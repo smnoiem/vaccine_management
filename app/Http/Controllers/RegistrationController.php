@@ -57,4 +57,20 @@ class RegistrationController extends Controller
             abort(403);
         }
     }
+
+    function cancel_appointment(Request $request)
+    {
+        $dose = Dose::findOrFail($request->dose_id);
+
+        if($dose->registration->user_id == auth()->user()->id)
+        {
+            $dose->scheduled_date = null;
+            $dose->save();
+
+            return response()->json(['message' => 'Appointment cancelled.']);
+        }
+        else{
+            abort(403);
+        }
+    }
 }

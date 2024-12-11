@@ -21,7 +21,14 @@
             <tr>
                 <td>{{$dose->dose_type}}</td>
                 <td>
-                    <input type="date" name="scheduled_date" value="{{ $dose->scheduled_date }}" min="{{ today()->toDateString() }}" id="scheduled_date" data-dose-id="{{ $dose->id }}">
+                    <input type="date" name="scheduled_date" value="{{ $dose->scheduled_date }}" min="{{ today()->toDateString() }}" class="scheduled_date" data-dose-id="{{ $dose->id }}">
+
+                    @if($dose->scheduled_date && !$dose->taken_date)
+                        <a href="#" class="cancel_appointment" data-dose-id="{{ $dose->id }}">
+                            Cancel
+                        </a>
+                    @endif
+
                 </td>
                 <td>{{$dose->taken_date}}</td>
                 <td>{{ $dose->givenBy->name ?? "" }}</td>
@@ -34,30 +41,65 @@
 
     @push('scripts')
         <script>
-            let elem = document.getElementById('scheduled_date');
+            let elems = document.getElementsByClassName('scheduled_date');
 
-            elem.addEventListener('change', function (event) {
-                updated_date = event.target.value;
-                const doseId = event.target.dataset.doseId
+            Array.from(elems).forEach(function(elem) {
 
-                let xhr = new XMLHttpRequest();
-                let url = '{{ route('front.registration.update_date') }}';
+                elem.addEventListener('change', function (event) {
+                    updated_date = event.target.value;
+                    const doseId = event.target.dataset.doseId
 
-                xhr.open('POST', url, true);
-                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+                    let xhr = new XMLHttpRequest();
+                    let url = '{{ route('front.registration.update_date') }}';
 
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            data = JSON.parse(xhr.responseText);
-                            console.log(data.message);
-                            alert('Success: ' + data.message);
-                        } else {
-                            alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                    xhr.open('POST', url, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                data = JSON.parse(xhr.responseText);
+                                console.log(data.message);
+                                alert('Success: ' + data.message);
+                            } else {
+                                alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                            }
                         }
                     }
-                }
-                xhr.send(JSON.stringify({ date: updated_date, dose_id: doseId, _token: '{{csrf_token()}}' }));
+                    xhr.send(JSON.stringify({ date: updated_date, dose_id: doseId, _token: '{{csrf_token()}}' }));
+                });
+            });
+
+
+            elems = document.getElementsByClassName('cancel_appointment');
+
+            Array.from(elems).forEach(function(elem) {
+
+                elem.addEventListener('click', function (event) {
+
+                    event.preventDefault();
+
+                    const doseId = event.target.dataset.doseId
+
+                    let xhr = new XMLHttpRequest();
+                    let url = '{{ route('front.registration.cancel_appointment') }}';
+
+                    xhr.open('POST', url, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                data = JSON.parse(xhr.responseText);
+                                console.log(data.message);
+                                alert('Success: ' + data.message);
+                            } else {
+                                alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                            }
+                        }
+                    }
+                    xhr.send(JSON.stringify({ dose_id: doseId, _token: '{{csrf_token()}}' }));
+                });
             });
 
         </script>
