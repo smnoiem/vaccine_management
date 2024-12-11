@@ -14,6 +14,7 @@ Route::name('front.')->group(function () {
 
         Route::get('/', [RegistrationController::class, 'create'])->name('create');
         Route::post('/', [RegistrationController::class, 'store'])->name('store');
+        Route::get('/status', [RegistrationController::class, 'status'])->name('status');
 
     });
 

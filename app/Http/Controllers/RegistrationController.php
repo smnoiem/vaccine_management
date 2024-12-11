@@ -32,6 +32,12 @@ class RegistrationController extends Controller
         else {
             return view('front.registration.failure');
         }
-        
+    }
+
+    function status(Request $request)
+    {
+        $registration = auth()->user()->registration;
+
+        return view('front.registration.show', ['registration' => $registration]);
     }
 }

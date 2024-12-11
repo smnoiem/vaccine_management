@@ -13,7 +13,7 @@
         @else
         <div>
             @if (auth()->user()->registration)
-            <a href="">Vaccine Status</a> <br>
+            <a href="{{ route('front.registration.status') }}">Vaccine Status</a> <br>
             @else
             <a href="{{ route('front.registration.create') }}">Register</a> <br>
             @endif
