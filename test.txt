@@ -1,0 +1,4 @@
+
+            // $table->string('nid', 17);
+            // $table->date('dob');
+            // $table->string('phone', 15);

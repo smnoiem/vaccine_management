@@ -16,7 +16,7 @@ class CreateCentersTable extends Migration
         Schema::create('centers', function (Blueprint $table) {
             $table->id();
             $table->string('name', 30);
-            $table->integer('daily_limit');
+            $table->integer('daily_limit')->nullable();
             $table->date('current_available_date')->nullable();
             $table->integer('current_available_date_count')->nullable();
             $table->string('address', 350)->nullable();
