@@ -23,8 +23,8 @@ class CreateDosesTable extends Migration
             $table->foreign('given_by')->references('id')->on('users');
 
             $table->string('dose_type');
-            $table->date('scheduled_date');
-            $table->date('taken_date');
+            $table->date('scheduled_date')->nullable();
+            $table->date('taken_date')->nullable();
             
             $table->timestamps();
         });

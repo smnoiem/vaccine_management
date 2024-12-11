@@ -17,6 +17,7 @@ class CreateVaccinesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('vendor');
+            $table->timestamps();
         });
     }
 
