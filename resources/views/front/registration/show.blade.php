@@ -13,13 +13,19 @@
   
     <table style="border: 1px solid black">
   
-      <tr>
-        <th>Dose Type</th> <th>Date Scheduled</th> <th>Date Taken</th> <th>Given By</th> <th>Vaccine Name</th>
-      </tr>
-  
-      <tr>
-        <td>test type</td><td>test date</td><td>taken date</td><th>given by operator</th><th>vaccine name</th>
-      </tr>
+        <tr>
+            <th>Dose Type</th> <th>Date Scheduled</th> <th>Date Taken</th> <th>Given By</th> <th>Vaccine Name</th>
+        </tr>
+
+        @foreach ($registration->doses as $dose)
+            <tr>
+                <td>{{$dose->dose_type}}</td>
+                <td>{{$dose->scheduled_date}}</td>
+                <td>{{$dose->taken_date}}</td>
+                <td>{{ $dose->givenBy->name ?? "" }}</td>
+                <td>{{$dose->vaccine->name}}</td>
+            </tr>
+        @endforeach
   
     </table>
     
