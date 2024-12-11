@@ -12,8 +12,8 @@ Route::name('front.')->group(function () {
 
     Route::name('registration.')->prefix('registration')->group(function () {
 
-        Route::get('/', [RegistrationController::class, 'create'])->name('create');
-        Route::post('/', [RegistrationController::class, 'store'])->name('store');
+        Route::get('/', [RegistrationController::class, 'create'])->middleware('not-registered')->name('create');
+        Route::post('/', [RegistrationController::class, 'store'])->middleware('not-registered')->name('store');
         Route::get('/status', [RegistrationController::class, 'status'])->name('status');
 
     });
