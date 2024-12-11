@@ -16,8 +16,22 @@ class RegistrationController extends Controller
     function store(StoreRegistrationRequest $request) 
     {
         $validated = $request->validated();
+
+        // $registration = Registration::create([
+        //     'center_id' => $validated['center_id']
+        // ]);
+
+        $registration = new Registration;
+
+        $registration->center_id = $validated['center_id'];
+        $registration->user_id = auth()->user()->id;
         
-        dd($validated);
+        if($registration->save()) {
+            return view('front.registration.success');
+        }
+        else {
+            return view('front.registration.failure');
+        }
         
     }
 }
