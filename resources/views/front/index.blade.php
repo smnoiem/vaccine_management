@@ -3,7 +3,7 @@
     <h3 style="text-align:center">Welcome to Vaxx</h3>
     <hr>
     <div style="padding:6%;font-size:1.5rem;">
-        @if(!auth())
+        @if(!auth()?->user())
         <div>
             <ul>
                 <li><a href="{{ route('login') }}">login</a></li>
