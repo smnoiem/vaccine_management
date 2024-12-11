@@ -15,6 +15,7 @@ Route::name('front.')->group(function () {
         Route::get('/', [RegistrationController::class, 'create'])->middleware('not-registered')->name('create');
         Route::post('/', [RegistrationController::class, 'store'])->middleware('not-registered')->name('store');
         Route::get('/status', [RegistrationController::class, 'status'])->name('status');
+        Route::post('update_date', [RegistrationController::class, 'update_date'])->name('update_date');
 
     });
 

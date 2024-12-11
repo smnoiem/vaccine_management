@@ -20,7 +20,9 @@
         @foreach ($registration->doses as $dose)
             <tr>
                 <td>{{$dose->dose_type}}</td>
-                <td>{{$dose->scheduled_date}}</td>
+                <td>
+                    <input type="date" name="scheduled_date" value="{{ $dose->scheduled_date }}" min="{{ today()->toDateString() }}" id="scheduled_date" data-dose-id="{{ $dose->id }}">
+                </td>
                 <td>{{$dose->taken_date}}</td>
                 <td>{{ $dose->givenBy->name ?? "" }}</td>
                 <td>{{$dose->vaccine->name}}</td>
@@ -28,6 +30,38 @@
         @endforeach
   
     </table>
+
+
+    @push('scripts')
+        <script>
+            let elem = document.getElementById('scheduled_date');
+
+            elem.addEventListener('change', function (event) {
+                updated_date = event.target.value;
+                const doseId = event.target.dataset.doseId
+
+                let xhr = new XMLHttpRequest();
+                let url = '{{ route('front.registration.update_date') }}';
+
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            data = JSON.parse(xhr.responseText);
+                            console.log(data.message);
+                            alert('Success: ' + data.message);
+                        } else {
+                            alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                        }
+                    }
+                }
+                xhr.send(JSON.stringify({ date: updated_date, dose_id: doseId, _token: '{{csrf_token()}}' }));
+            });
+
+        </script>
+    @endpush
     
-  </x-layout>
-  
+</x-layout>
+

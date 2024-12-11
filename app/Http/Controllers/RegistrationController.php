@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegistrationRequest;
+use App\Models\Dose;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,21 @@ class RegistrationController extends Controller
         $registration = auth()->user()->registration;
 
         return view('front.registration.show', ['registration' => $registration]);
+    }
+
+    function update_date(Request $request)
+    {
+        $dose = Dose::findOrFail($request->dose_id);
+
+        if($dose->registration->user_id == auth()->user()->id)
+        {
+            $dose->scheduled_date = $request->date;
+            $dose->save();
+
+            return response()->json(['message' => 'Date updated']);
+        }
+        else{
+            abort(403);
+        }
     }
 }
