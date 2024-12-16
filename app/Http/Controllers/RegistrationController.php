@@ -24,11 +24,12 @@ class RegistrationController extends Controller
         $registration->center_id = $validated['center_id'];
         $registration->user_id = auth()->user()->id;
         
-        if($registration->save()) {
-            return view('front.registration.success');
+        if($registration->save())
+        {
+            return redirect(route('front.registration.status'))->with(['success' => 'Registration Successful!']);
         }
         else {
-            return view('front.registration.failure');
+            return redirect(route('front.registration.create'))->with(['error' => 'Registration Failed! Something went wrong while adding data to the database.']);
         }
     }
 
