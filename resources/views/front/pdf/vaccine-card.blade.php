@@ -35,10 +35,13 @@
             width: 100%;
         }
 
-        .img_box {
-            position: absolute;
-            top: 35%;
-            right: 13%;
+        .logo {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .logo img {
+            display: inline-block;
         }
 
     </style>
@@ -46,15 +49,15 @@
 
 <body>
     <div id="container">
-        <div class="img_box">
-            <img src="{{ public_path('img/logo.png') }}" alt="">
-        </div>
         <div class="card">
             <h2>Covid-19 Vaccine Card</h2>
             <table border="1">
                 <tr>
                     <th class="p-2">Name</th>
                     <td class="p-2">{{ $user->name }}</td>
+                    <td colspan="3" rowspan="7" class="logo">
+                        <img src="{{ public_path('img/logo.png') }}" alt="" style="2px solid red">
+                    </td>
                 </tr>
                 <tr>
                     <th class="p-2">Email</th>
@@ -86,6 +89,22 @@
                         <h4>Vaccine Informations</h4>
                     </td>
                 </tr>
+
+                <tr>
+                    <th>Dose Type</th>
+                    <th>Date Scheduled</th>
+                    <th>Date Taken</th>
+                    <th>Given By</th>
+                    <th>Vaccine Name</th>
+                </tr>
+
+                @foreach ($user->registration->doses as $dose)
+                    <th>{{ ucfirst($dose->dose_type) }} Dose</th>
+                    <td>{{ $dose->scheduled_at }}</td>
+                    <td>{{ $dose->date_taken }}</td>
+                    <td></td>
+                    <td></td>
+                @endforeach
 
             </table>
         </div>
