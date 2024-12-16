@@ -14,9 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        if(User::where('email', 'test@example.com')->doesntExist()) {
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
+
+        $this->call([
+            VaccineSeeder::class,
+            CenterSeeder::class,
         ]);
     }
 }
