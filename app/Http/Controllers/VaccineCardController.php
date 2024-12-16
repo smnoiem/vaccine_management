@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class VaccineCardController extends Controller
@@ -37,6 +38,11 @@ class VaccineCardController extends Controller
             return redirect()->back()->with('warning', 'No appointment found for taking a dose');
         }
 
-        // return view('vaccine-card-pdf-view');
+        $pdf = Pdf::loadView('front.pdf.vaccine-card', [
+            'user' => auth()->user(),
+        ]);
+
+        $rand = rand(1, 500);
+        return $pdf->download("vaccine-card-" . auth()->user()->name . "-{$rand}.pdf");
     }
 }
