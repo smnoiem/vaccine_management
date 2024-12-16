@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegistrationRequest;
+use App\Models\Center;
 use App\Models\Dose;
 use App\Models\Registration;
 use Illuminate\Http\Request;
@@ -11,27 +12,24 @@ class RegistrationController extends Controller
 {
     function create() 
     {
-        return view('front.registration.create');
+        return view('front.registration.create', ['centers' => Center::all()]);
     }
 
     function store(StoreRegistrationRequest $request) 
     {
         $validated = $request->validated();
 
-        // $registration = Registration::create([
-        //     'center_id' => $validated['center_id']
-        // ]);
-
         $registration = new Registration;
 
         $registration->center_id = $validated['center_id'];
         $registration->user_id = auth()->user()->id;
         
-        if($registration->save()) {
-            return view('front.registration.success');
+        if($registration->save())
+        {
+            return redirect(route('front.registration.status'))->with(['success' => 'Registration Successful!']);
         }
         else {
-            return view('front.registration.failure');
+            return redirect(route('front.registration.create'))->with(['error' => 'Registration Failed! Something went wrong while adding data to the database.']);
         }
     }
 

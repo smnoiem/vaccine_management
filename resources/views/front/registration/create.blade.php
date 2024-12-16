@@ -1,6 +1,6 @@
 @extends('layouts.frontend_app')
 
-@section('title', 'Registration')
+@section('title', 'Vaccine Registration')
 @section('app_content')
     <section id="registraion_section">
         <div class="row container">
@@ -28,7 +28,7 @@
                                     <div class="my-2">
                                         <label for="">Name</label>
                                         <input type="text" class="form-control" name="name" placeholder="Name"
-                                            value="{{ old('name') }}">
+                                            value="{{ auth()->user()->name }}">
                                         @error('name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -38,7 +38,7 @@
                                     <div class="my-2">
                                         <label for="">Email</label>
                                         <input type="text" class="form-control" name="email" placeholder="Email"
-                                            value="{{ old('email') }}">
+                                            value="{{ auth()->user()->email }}">
                                         @error('email')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -51,7 +51,7 @@
                                     <div class="my-2">
                                         <label for="">NID</label>
                                         <input type="text" class="form-control" name="nid" placeholder="NID"
-                                            value="{{ old('nid') }}">
+                                            value="{{ auth()->user()->nid }}">
                                         @error('nid')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -61,7 +61,7 @@
                                     <div class="my-2">
                                         <label for="">Phone</label>
                                         <input type="text" class="form-control" name="phone" placeholder="Phone"
-                                            value="{{ old('phone') }}">
+                                            value="{{ auth()->user()->phone }}">
                                         @error('phone')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -72,38 +72,38 @@
                                 <div class="col-md-6">
                                     <div class="my-2">
                                         <label for="">Date Of Birth</label>
-                                        <input type="date" class="form-control" name="date_of_birth"
-                                            value="{{ old('date_of_birth') }}">
-                                        @error('date_of_birth')
+                                        <input type="date" class="form-control" name="dob"
+                                            value="{{ auth()->user()->dob }}">
+                                        @error('dob')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="my-2">
                                         <label for="">Vaccine</label>
                                         <select name="vaccine_id" id="" class="form-control">
                                             <option value="">Select a Vaccine</option>
-                                            {{-- @foreach ($vaccines as $vaccine)
+                                            @foreach ($vaccines as $vaccine)
                                                 <option value="{{ $vaccine->id }}">{{ $vaccine->name }}</option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
                                         @error('vaccine_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col-md-6">
                                     <div class="my-2">
                                         <label for="">Division</label>
                                         <select name="division" id="" class="form-control division">
                                             <option value="">Select Your Divison</option>
-                                            {{-- @foreach ($divisions as $division)
+                                            @foreach ($divisions as $division)
                                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                            @endforeach --}}
+                                            @endforeach
                                         </select>
                                         @error('division')
                                             <span class="text-danger">{{ $message }}</span>
@@ -133,10 +133,29 @@
                                         @enderror
                                     </div>
                                 </div>
+                            </div> --}}
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="my-2">
+                                        <label for="">Preferred Center</label>
+                                        <select name="center_id" id="" class="form-control center">
+                                            <option value="">Select a Center</option>
+                                            @foreach ($centers as $center)
+                                                <option value="{{ $center->id }}" @selected(old('center_id') == $center->id)>
+                                                    {{ $center->name }}, address: {{ $center->address }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('center_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="my-2">
-                                <button class="btn btn-sm btn-success w-100 disabled verify_btn">Apply for Vaccine</button>
+                                <button class="btn btn-sm btn-success w-100">Apply for Vaccine</button>
                             </div>
 
                         </form>
@@ -149,36 +168,5 @@
 
 @push('script')
     <script>
-        $(document).ready(function() {
-            $('.division').select2();
-        });
-
-        $('body').on('change', '.division', function() {
-            let id = $(this).val();
-            let url = `${base_url}/division-districts/${id}`
-            axios.get(url).then(res => {
-                let html = '';
-                html += '<option value="">Select Your District</option>'
-                res.data.districts.forEach(element => {
-                    html += "<option value=" + element.id + ">" + element.name + "</option>"
-                });
-                $('.district').html(html);
-                $('.district').select2();
-            })
-        });
-
-        $('body').on('change', '.district', function() {
-            let id = $(this).val();
-            let url = `${base_url}/district-hospitals/${id}`
-            axios.get(url).then(res => {
-                let html = '';
-                html += '<option value="">Select A Hospital</option>'
-                res.data.hospitals.forEach(element => {
-                    html += "<option value=" + element.id + ">" + element.name + "</option>"
-                });
-                $('.hospital').html(html);
-                $('.hospital').select2();
-            })
-        });
     </script>
 @endpush
