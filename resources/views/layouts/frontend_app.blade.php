@@ -85,25 +85,36 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav " style="margin-left: auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="/">হোম</a>
+                                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                            href="{{ route('front.registration.create') }}">নিবন্ধন</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                            href="{{ route('front.vaccine.card') }}">টিকা কার্ড</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                            href="{{ route('front.vaccine.certificate') }}">টিকা সনদ</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
-                                            href="{{ route('front.registration.status') }}">টিকা
-                                            সনদ যাচাই</a>
-                                    </li>
+                                    @if(!auth()?->user())
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ route('login') }}">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{{ route('register') }}">Register</a>
+                                        </li>
+                                    @else
+                                        @if (auth()->user()->registration)
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page"
+                                                    href="{{ route('front.registration.status') }}">Vaccine Status</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page"
+                                                    href="{{ route('front.vaccine.card') }}">Download Vaccine Card</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page"
+                                                    href="{{ route('front.vaccine.certificate') }}">Download Certificate</a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page"
+                                                    href="{{ route('front.registration.create') }}">Apply</a>
+                                            </li>
+                                        @endif
+                                    @endif
                                 </ul>
                             </div>
                         </nav>

@@ -1,24 +1,3 @@
-{{-- 
-    @if(!auth()?->user())
-        <div>
-            <ul>
-                <li><a href="{{ route('login') }}">login</a></li>
-                <li><a href="{{ route('register') }}">register</a></li>
-            </ul>
-        </div>
-        @else
-        <div>
-            @if (auth()->user()->registration)
-            <a href="{{ route('front.registration.status') }}">Vaccine Status</a> <br>
-            @else
-            <a href="{{ route('front.registration.create') }}">Register</a> <br>
-            @endif
-            <a href="/vaccine-card">Download Vaccine Card</a> <br>
-            <a href="/vaccine-certificate">Download Certificate</a> <br>
-        </div>
-    @endif 
---}}
-
 @extends('layouts.frontend_app')
 
 @section('title', 'Vaccine Management Home')
