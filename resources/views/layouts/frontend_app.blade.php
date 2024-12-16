@@ -89,18 +89,19 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page"
-                                            href="{{ route('registration') }}">নিবন্ধন</a>
+                                            href="{{ route('front.registration.create') }}">নিবন্ধন</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page"
-                                            href="{{ route('tika.card') }}">টিকা কার্ড</a>
+                                            href="{{ route('front.vaccine.card') }}">টিকা কার্ড</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page"
-                                            href="{{ route('certificate.card') }}">টিকা সনদ</a>
+                                            href="{{ route('front.vaccine.certificate') }}">টিকা সনদ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{ route('status') }}">টিকা
+                                        <a class="nav-link active" aria-current="page"
+                                            href="{{ route('front.registration.status.index') }}">টিকা
                                             সনদ যাচাই</a>
                                     </li>
                                 </ul>

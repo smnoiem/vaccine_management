@@ -30,11 +30,11 @@ Route::name('front.')->group(function () {
 
     Route::get('/vaccine-certificate', function () {
         return "certificate page";
-    })->name('vaccine.card');
+    })->name('vaccine.certificate');
 
     Route::post('/vaccine-certificate', function () {
         return "download certificate";
-    })->name('vaccine.card');
+    })->name('vaccine.certificate');
 
 
 });
