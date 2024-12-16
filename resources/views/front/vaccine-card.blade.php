@@ -66,7 +66,14 @@
                             
                                 </table>
 
-                                <button class="btn btn-sm btn-success w-100 disabled verify_btn">Download Vaccine Card</button>
+                                <form action="{{ route('front.vaccine.card.download') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" 
+                                        class="btn btn-sm btn-success w-100"
+                                    >
+                                        Download Vaccine Card
+                                    </button>
+                                </form>
 
                             </div>
                         </div>
