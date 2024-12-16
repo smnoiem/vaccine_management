@@ -18,24 +18,22 @@ class VaccineCertificateController extends Controller
 
         $registration = auth()->user()->registration;
 
-        $appointmentFound = false;
+        $totalTaken = 0;
 
         foreach($registration->doses as $dose)
         {
             if($dose)
             {
-                if($dose->scheduled_date && $dose->taken_date == null)
+                if($dose->taken_date)
                 {
-                    $appointmentFound = true;
-
-                    break;
+                    $totalTaken++;
                 }
             }
         }
 
-        if(!$appointmentFound)
+        if($totalTaken < 2)
         {
-            return redirect()->back()->with('warning', 'No appointment found for taking a dose');
+            return redirect()->back()->with('warning', 'Minimum first two doses are needed for certification');
         }
 
         $pdf = Pdf::loadView('front.pdf.vaccine-certificate', [

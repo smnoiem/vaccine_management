@@ -50,7 +50,7 @@
 <body>
     <div id="container">
         <div class="card">
-            <h2>Covid-19 Vaccine Card</h2>
+            <h2>Covid-19 Vaccine Certificate</h2>
             <table border="1">
                 <tr>
                     <th class="p-2">Name</th>
@@ -80,7 +80,7 @@
                     <td class="p-2">{{ $user->registration->center->name }}</td>
                 </tr>
                 <tr>
-                    <th class="p-2">Registraion Date</th>
+                    <th class="p-2">Registration Date</th>
                     <td class="p-2">{{ $user->registration->created_at->format('Y-M-d') }}</td>
                 </tr>
 
