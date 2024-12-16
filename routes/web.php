@@ -25,7 +25,7 @@ Route::name('front.')->group(function () {
     Route::middleware(['auth'])->group(function () {
 
         Route::get('/vaccine-card', function () {
-            return "vaccine card page";
+            return "test change";
         })->name('vaccine.card');
 
         Route::post('/vaccine-card', function () {
