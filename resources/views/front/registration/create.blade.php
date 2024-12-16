@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Registraion For Vaccine</h2>
-                        <form action="{{ route('handle.registration') }}" class="mt-4" method="POST">
+                        <form action="{{ route('front.registration.store') }}" class="mt-4" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -84,9 +84,9 @@
                                         <label for="">Vaccine</label>
                                         <select name="vaccine_id" id="" class="form-control">
                                             <option value="">Select a Vaccine</option>
-                                            @foreach ($vaccines as $vaccine)
+                                            {{-- @foreach ($vaccines as $vaccine)
                                                 <option value="{{ $vaccine->id }}">{{ $vaccine->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         @error('vaccine_id')
                                             <span class="text-danger">{{ $message }}</span>
@@ -101,9 +101,9 @@
                                         <label for="">Division</label>
                                         <select name="division" id="" class="form-control division">
                                             <option value="">Select Your Divison</option>
-                                            @foreach ($divisions as $division)
+                                            {{-- @foreach ($divisions as $division)
                                                 <option value="{{ $division->id }}">{{ $division->name }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         @error('division')
                                             <span class="text-danger">{{ $message }}</span>
