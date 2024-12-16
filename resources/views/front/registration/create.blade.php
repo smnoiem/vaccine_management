@@ -155,7 +155,7 @@
                             </div>
 
                             <div class="my-2">
-                                <button class="btn btn-sm btn-success w-100 disabled verify_btn">Apply for Vaccine</button>
+                                <button class="btn btn-sm btn-success w-100">Apply for Vaccine</button>
                             </div>
 
                         </form>
@@ -168,36 +168,5 @@
 
 @push('script')
     <script>
-        $(document).ready(function() {
-            $('.division').select2();
-        });
-
-        $('body').on('change', '.division', function() {
-            let id = $(this).val();
-            let url = `${base_url}/division-districts/${id}`
-            axios.get(url).then(res => {
-                let html = '';
-                html += '<option value="">Select Your District</option>'
-                res.data.districts.forEach(element => {
-                    html += "<option value=" + element.id + ">" + element.name + "</option>"
-                });
-                $('.district').html(html);
-                $('.district').select2();
-            })
-        });
-
-        $('body').on('change', '.district', function() {
-            let id = $(this).val();
-            let url = `${base_url}/district-hospitals/${id}`
-            axios.get(url).then(res => {
-                let html = '';
-                html += '<option value="">Select A Hospital</option>'
-                res.data.hospitals.forEach(element => {
-                    html += "<option value=" + element.id + ">" + element.name + "</option>"
-                });
-                $('.hospital').html(html);
-                $('.hospital').select2();
-            })
-        });
     </script>
 @endpush

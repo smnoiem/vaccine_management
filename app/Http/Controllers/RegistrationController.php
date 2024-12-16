@@ -19,10 +19,6 @@ class RegistrationController extends Controller
     {
         $validated = $request->validated();
 
-        $registration = Registration::create([
-            'center_id' => $validated['center_id']
-        ]);
-
         $registration = new Registration;
 
         $registration->center_id = $validated['center_id'];
