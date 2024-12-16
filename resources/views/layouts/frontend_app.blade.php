@@ -71,7 +71,7 @@
                 <div class="row py-1">
                     <div class="col-md-4">
                         <a href="/">
-                            <img src="{{ asset('img/logo-f.5c608b98.png') }}" alt="">
+                            <img src="{{ asset('img/logo.png') }}" alt="">
                         </a>
                     </div>
                     <div class="col-md-8 align-self-center align-items-center justify-content-end"
@@ -101,7 +101,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page"
-                                            href="{{ route('front.registration.status.index') }}">টিকা
+                                            href="{{ route('front.registration.status') }}">টিকা
                                             সনদ যাচাই</a>
                                     </li>
                                 </ul>
@@ -119,7 +119,7 @@
                 <div class="row">
                     <div class="col-md-3 mb-2 align-self-center">
                         <a href="/">
-                            <img src="{{ asset('img/logo-f.5c608b98.png') }}" alt="">
+                            <img src="{{ asset('img/logo.png') }}" alt="">
                         </a>
 
                     </div>
