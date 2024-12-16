@@ -1,6 +1,6 @@
 @extends('layouts.frontend_app')
 
-@section('title', 'Vaccine Card')
+@section('title', 'Vaccine Certificate')
 
 @section('app_content')
     <section id="vaccine-card">
@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                                             
-                        <h2 class="card-title"> Vaccine Card </h2>
+                        <h2 class="card-title"> Vaccine Certificate </h2>
                     
                         <div class="card">
                             <div class="card-body">
@@ -59,12 +59,12 @@
                             
                                 </table>
 
-                                <form action="{{ route('front.vaccine.card.download') }}" method="POST">
+                                <form action="{{ route('front.vaccine.certificate.download') }}" method="POST">
                                     @csrf
                                     <button type="submit" 
                                         class="btn btn-sm btn-success w-100"
                                     >
-                                        Download Vaccine Card
+                                        Download Vaccine Certificate
                                     </button>
                                 </form>
 

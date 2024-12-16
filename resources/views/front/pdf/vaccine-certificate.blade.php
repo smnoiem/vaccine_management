@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vaccine Card - Vaxx</title>
+    <title>Vaccine Certificate - Vaxx</title>
     <style>
         #container {
             margin: 0 auto;
@@ -50,7 +50,7 @@
 <body>
     <div id="container">
         <div class="card">
-            <h2>Covid-19 Vaccine Card</h2>
+            <h2>Covid-19 Vaccine Certificate</h2>
             <table border="1">
                 <tr>
                     <th class="p-2">Name</th>
@@ -80,7 +80,7 @@
                     <td class="p-2">{{ $user->registration->center->name }}</td>
                 </tr>
                 <tr>
-                    <th class="p-2">Registraion Date</th>
+                    <th class="p-2">Registration Date</th>
                     <td class="p-2">{{ $user->registration->created_at->format('Y-M-d') }}</td>
                 </tr>
 
@@ -99,6 +99,9 @@
                 </tr>
 
                 @foreach ($user->registration->doses as $dose)
+
+                    @continue(!($dose->vaccine && $dose->taken_date))
+
                     <tr>
                         <th>{{ ucfirst($dose->dose_type ?? '') }} Dose</th>
                         <td>{{ $dose->scheduled_at ?? '' }}</td>
@@ -106,6 +109,7 @@
                         <td>{{ $dose->givenBy?->name ?? '' }}</td>
                         <td>{{ $dose->vaccine?->name ?? '' }}</td>
                     </tr>
+                    
                 @endforeach
 
             </table>
