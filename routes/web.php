@@ -12,30 +12,35 @@ Route::name('front.')->group(function () {
 
     Route::name('registration.')->prefix('registration')->group(function () {
 
-        Route::get('/', [RegistrationController::class, 'create'])->middleware('not-registered')->name('create');
-        Route::post('/', [RegistrationController::class, 'store'])->middleware('not-registered')->name('store');
-        Route::get('/status', [RegistrationController::class, 'status'])->name('status');
+        Route::get('/', [RegistrationController::class, 'create'])->middleware(['not-registered'])->name('create');
+        Route::post('/', [RegistrationController::class, 'store'])->middleware(['not-registered'])->name('store');
+
+        Route::get('/status', [RegistrationController::class, 'status'])->middleware(['auth', 'registered'])->name('status');
+        
         Route::post('update_date', [RegistrationController::class, 'update_date'])->name('update_date');
         Route::post('cancel_appointment', [RegistrationController::class, 'cancel_appointment'])->name('cancel_appointment');
 
     });
 
-    Route::get('/vaccine-card', function () {
-        return "vaccine card page";
-    })->name('vaccine.card');
+    Route::middleware(['auth'])->group(function () {
 
-    Route::post('/vaccine-card', function () {
-        return "download card";
-    })->name('vaccine.card');
+        Route::get('/vaccine-card', function () {
+            return "vaccine card page";
+        })->name('vaccine.card');
 
-    Route::get('/vaccine-certificate', function () {
-        return "certificate page";
-    })->name('vaccine.certificate');
+        Route::post('/vaccine-card', function () {
+            return "download card";
+        })->name('vaccine.card');
 
-    Route::post('/vaccine-certificate', function () {
-        return "download certificate";
-    })->name('vaccine.certificate');
+        Route::get('/vaccine-certificate', function () {
+            return "certificate page";
+        })->name('vaccine.certificate');
 
+        Route::post('/vaccine-certificate', function () {
+            return "download certificate";
+        })->name('vaccine.certificate');
+
+    });
 
 });
 
