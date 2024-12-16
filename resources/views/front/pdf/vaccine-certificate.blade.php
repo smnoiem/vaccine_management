@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vaccine Card - Vaxx</title>
+    <title>Vaccine Certificate - Vaxx</title>
     <style>
         #container {
             margin: 0 auto;
@@ -99,6 +99,9 @@
                 </tr>
 
                 @foreach ($user->registration->doses as $dose)
+
+                    @continue(!($dose->vaccine && $dose->date_taken))
+
                     <th>{{ ucfirst($dose->dose_type ?? '') }} Dose</th>
                     <td>{{ $dose->scheduled_at ?? '' }}</td>
                     <td>{{ $dose->date_taken ?? '' }}</td>
