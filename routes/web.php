@@ -20,6 +20,23 @@ Route::name('front.')->group(function () {
 
     });
 
+    Route::get('/vaccine-card', function () {
+        return "vaccine card page";
+    })->name('vaccine.card');
+
+    Route::post('/vaccine-card', function () {
+        return "download card";
+    })->name('vaccine.card');
+
+    Route::get('/vaccine-certificate', function () {
+        return "certificate page";
+    })->name('vaccine.card');
+
+    Route::post('/vaccine-certificate', function () {
+        return "download certificate";
+    })->name('vaccine.card');
+
+
 });
 
 Route::get('/dashboard', function () {
@@ -32,4 +49,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
