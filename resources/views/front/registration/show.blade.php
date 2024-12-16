@@ -23,43 +23,59 @@
                     <div class="card-body">
 
                                             
-                        <h2> Vaccine Status </h2>
+                        <h2 class="card-title"> Vaccine Status </h2>
                     
-                        <div>
-                        <h3>Candidate: {{ $registration->user->name }}</h3>
-                        <p>Date of Birth: {{ $registration->user->dob }}</p>
-                        <p>Vaccine Center: {{ $registration->center->name }}</p>
-                        @if ($registration->center->address)
-                            <p>Vaccine Center Address: {{ $registration->center->address }}</p>
-                        @endif
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h5 class="card-title">Candidate: {{ $registration->user->name }}</h5>
+
+                                <div class="mx-3">
+                                    <p class="mb-0">Date of Birth: {{ $registration->user->dob }}</p>
+                                    <p class="mb-0">Vaccine Center: {{ $registration->center->name }}</p>
+                                    @if ($registration->center->address)
+                                        <p class="mb-0">Vaccine Center Address: {{ $registration->center->address }}</p>
+                                    @endif
+                                </div>
+
+                                <table class="table table-hover">
+                            
+                                    <tr>
+                                        <th>Dose Type</th> <th>Date Scheduled</th> <th>Date Taken</th> <th>Given By</th> <th>Vaccine Name</th>
+                                    </tr>
+
+                                    @forelse ($registration->doses as $dose)
+                                        <tr>
+                                            <td>{{$dose->dose_type}}</td>
+                                            <td>
+                                                <input type="date" 
+                                                    name="scheduled_date" 
+                                                    value="{{ $dose->scheduled_date }}" 
+                                                    min="{{ today()->toDateString() }}" 
+                                                    class="scheduled_date" 
+                                                    data-dose-id="{{ $dose->id }}"
+                                                    style="border: 1px solid #ffa687; border-radius: 3px;"
+                                                >
+
+                                                @if($dose->scheduled_date && !$dose->taken_date)
+                                                    <a href="#" class="cancel_appointment" data-dose-id="{{ $dose->id }}">
+                                                        Cancel
+                                                    </a>
+                                                @endif
+
+                                            </td>
+                                            <td>{{$dose->taken_date}}</td>
+                                            <td>{{ $dose->givenBy->name ?? "" }}</td>
+                                            <td>{{$dose->vaccine->name}}</td>
+                                        </tr>
+                                    @empty
+                                        <td colspan="5" class="text-center"><span>First dose is not scheduled yet</span></td>
+                                    @endforelse
+                            
+                                </table>
+
+                            </div>
                         </div>
-                    
-                        <table style="border: 1px solid black">
-                    
-                            <tr>
-                                <th>Dose Type</th> <th>Date Scheduled</th> <th>Date Taken</th> <th>Given By</th> <th>Vaccine Name</th>
-                            </tr>
-
-                            @foreach ($registration->doses as $dose)
-                                <tr>
-                                    <td>{{$dose->dose_type}}</td>
-                                    <td>
-                                        <input type="date" name="scheduled_date" value="{{ $dose->scheduled_date }}" min="{{ today()->toDateString() }}" class="scheduled_date" data-dose-id="{{ $dose->id }}">
-
-                                        @if($dose->scheduled_date && !$dose->taken_date)
-                                            <a href="#" class="cancel_appointment" data-dose-id="{{ $dose->id }}">
-                                                Cancel
-                                            </a>
-                                        @endif
-
-                                    </td>
-                                    <td>{{$dose->taken_date}}</td>
-                                    <td>{{ $dose->givenBy->name ?? "" }}</td>
-                                    <td>{{$dose->vaccine->name}}</td>
-                                </tr>
-                            @endforeach
-                    
-                        </table>
 
                     </div>
 
@@ -87,12 +103,14 @@
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
+                    if (xhr.status === 200)
+                    {
                         data = JSON.parse(xhr.responseText);
-                        console.log(data.message);
-                        alert('Success: ' + data.message);
-                    } else {
-                        alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                        toastr.success(data.message, 'Success!')
+                    }
+                    else
+                    {
+                        toastr.success(xhr.status + ' ' + xhr.responseText, 'Error!')
                     }
                 }
             }
@@ -119,12 +137,17 @@
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
+                    if (xhr.status === 200)
+                    {
+                        inputElem = elem.previousElementSibling
+                        inputElem.value = '';
                         data = JSON.parse(xhr.responseText);
                         console.log(data.message);
-                        alert('Success: ' + data.message);
-                    } else {
-                        alert('Error: ' + xhr.status + ' ' + xhr.responseText);
+                        toastr.success(data.message, 'Success!')
+                    }
+                    else
+                    {
+                        toastr.success(xhr.status + ' ' + xhr.responseText, 'Error!')
                     }
                 }
             }
