@@ -15,7 +15,28 @@ class VaccineCardController extends Controller
 
     function generateVaccineCard (Request $request) {
 
-        // validate
+        $registration = auth()->user()->registration;
+
+        $appointmentFound = false;
+
+        foreach($registration->doses as $dose)
+        {
+            if($dose)
+            {
+                if($dose->scheduled_date && $dose->taken_date == null)
+                {
+                    $appointmentFound = true;
+
+                    break;
+                }
+            }
+        }
+
+        if(!$appointmentFound)
+        {
+            return response()->json(['message', 'No appointment found for taking a dose']);
+        }
+
         // return view('vaccine-card-pdf-view');
     }
 }
