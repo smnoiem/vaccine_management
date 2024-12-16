@@ -1,6 +1,6 @@
 @extends('layouts.frontend_app')
 
-@section('title', 'Vaccine Registration')
+@section('title', 'Vaccine Card')
 
 @section('app_content')
     <section id="vaccine-card">

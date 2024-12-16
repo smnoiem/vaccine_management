@@ -4,6 +4,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
+use App\Http\Controllers\VaccineCertificateController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,17 +26,13 @@ Route::name('front.')->group(function () {
 
     Route::middleware(['auth'])->group(function () {
 
-        Route::get('/vaccine-card', [VaccineCardController::class, 'showForm'])->name('vaccine.card');
+        Route::get('/vaccine-card', [VaccineCardController::class, 'index'])->name('vaccine.card');
 
-        Route::post('/vaccine-card/download', [VaccineCardController::class, 'generateVaccineCard'])->name('vaccine.card.download');
+        Route::post('/vaccine-card/download', [VaccineCardController::class, 'download'])->name('vaccine.card.download');
 
-        Route::get('/vaccine-certificate', function () {
-            return "certificate page";
-        })->name('vaccine.certificate');
+        Route::get('/vaccine-certificate', [VaccineCertificateController::class, 'index'])->name('vaccine.certificate');
 
-        Route::post('/vaccine-certificate', function () {
-            return "download certificate";
-        })->name('vaccine.certificate');
+        Route::post('/vaccine-certificate.download', [VaccineCertificateController::class, 'download'])->name('vaccine.certificate.download');
 
     });
 

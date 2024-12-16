@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
-class VaccineCardController extends Controller
+class VaccineCertificateController extends Controller
 {
-    function index() {
-
+    public function index(Request $request)
+    {
         $registration = auth()->user()->registration;
         
-        return view('front.vaccine-card', ['registration' => $registration]);
+        return view('front.vaccine-certificate', ['registration' => $registration]);
     }
 
     function download(Request $request) {
