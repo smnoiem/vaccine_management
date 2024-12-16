@@ -49,14 +49,7 @@
                                         <tr>
                                             <td>{{$dose->dose_type}}</td>
                                             <td>
-                                                <input type="date" 
-                                                    name="scheduled_date" 
-                                                    value="{{ $dose->scheduled_date }}" 
-                                                    min="{{ today()->toDateString() }}" 
-                                                    class="scheduled_date" 
-                                                    data-dose-id="{{ $dose->id }}"
-                                                    style="border: 1px solid #ffa687; border-radius: 3px;"
-                                                >
+                                                {{ $dose->scheduled_date }}
                                             </td>
                                             <td>{{$dose->taken_date}}</td>
                                             <td>{{ $dose->givenBy->name ?? "" }}</td>
