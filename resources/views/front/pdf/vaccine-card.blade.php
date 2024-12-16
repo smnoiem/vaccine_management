@@ -101,7 +101,7 @@
                 @foreach ($user->registration->doses as $dose)
                     <th>{{ ucfirst($dose->dose_type ?? '') }} Dose</th>
                     <td>{{ $dose->scheduled_at ?? '' }}</td>
-                    <td>{{ $dose->date_taken ?? '' }}</td>
+                    <td>{{ $dose->taken_date ?? '' }}</td>
                     <td>{{ $dose->givenBy?->name ?? '' }}</td>
                     <td>{{ $dose->vaccine?->name ?? '' }}</td>
                 @endforeach
