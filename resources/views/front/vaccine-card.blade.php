@@ -24,7 +24,7 @@
                     <div class="card-body">
 
                                             
-                        <h2 class="card-title"> Vaccine Status </h2>
+                        <h2 class="card-title"> Vaccine Card </h2>
                     
                         <div class="card">
                             <div class="card-body">
