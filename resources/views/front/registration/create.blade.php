@@ -1,6 +1,6 @@
 @extends('layouts.frontend_app')
 
-@section('title', 'Registration')
+@section('title', 'Vaccine Registration')
 @section('app_content')
     <section id="registraion_section">
         <div class="row container">
