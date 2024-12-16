@@ -34,7 +34,7 @@ class VaccineCardController extends Controller
 
         if(!$appointmentFound)
         {
-            return response()->json(['message', 'No appointment found for taking a dose']);
+            return redirect()->back()->with('warning', 'No appointment found for taking a dose');
         }
 
         // return view('vaccine-card-pdf-view');
