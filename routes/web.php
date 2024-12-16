@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\VaccineCardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,13 +25,9 @@ Route::name('front.')->group(function () {
 
     Route::middleware(['auth'])->group(function () {
 
-        Route::get('/vaccine-card', function () {
-            return "vaccine card page";
-        })->name('vaccine.card');
+        Route::get('/vaccine-card', [VaccineCardController::class, 'showForm'])->name('vaccine.card');
 
-        Route::post('/vaccine-card', function () {
-            return "download card";
-        })->name('vaccine.card');
+        Route::post('/vaccine-card/download', [VaccineCardController::class, 'generateVaccineCard'])->name('vaccine.card.download');
 
         Route::get('/vaccine-certificate', function () {
             return "certificate page";
