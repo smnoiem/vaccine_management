@@ -27,7 +27,7 @@ Route::name('front.')->group(function () {
 
         Route::get('/vaccine-card', [VaccineCardController::class, 'showForm'])->name('vaccine.card');
 
-        Route::post('/vaccine-card', [VaccineCardController::class, 'generateVaccineCard'])->name('vaccine.card');
+        Route::post('/vaccine-card/download', [VaccineCardController::class, 'generateVaccineCard'])->name('vaccine.card.download');
 
         Route::get('/vaccine-certificate', function () {
             return "certificate page";

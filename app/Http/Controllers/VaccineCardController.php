@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 class VaccineCardController extends Controller
 {
     function showForm () {
-        return view('front.vaccine-card');
+
+        $registration = auth()->user()->registration;
+        
+        return view('front.vaccine-card', ['registration' => $registration]);
     }
 
     function generateVaccineCard (Request $request) {
