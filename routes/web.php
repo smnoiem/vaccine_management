@@ -46,6 +46,8 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
 
     Route::resource('registrations', OperatorRegistrationController::class);
 
+    Route::get('registrations/{registration}/doses', [OperatorRegistrationController::class, 'getDoses'])->name('registrations.doses');
+
 });
 
 

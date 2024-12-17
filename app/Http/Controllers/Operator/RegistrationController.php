@@ -71,4 +71,9 @@ class RegistrationController extends Controller
     {
         //
     }
+
+    public function getDoses(Registration $registration)
+    {
+        return view('operator.registrations.doses', compact('registration'));
+    }
 }
