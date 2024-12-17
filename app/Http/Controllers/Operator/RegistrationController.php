@@ -99,7 +99,21 @@ class RegistrationController extends Controller
         $doseType = $request->input('dose_type');
 
         if ($registration->doses()->where('dose_type', '$dose_type')->exists()) {
-            return 2;
+            return response()->json(['message' => ucfirst($doseType) . ' dose already assigned'], 500);
+        }
+
+        if ($registration->doses()->whereNull('taken_date')->exists()) {
+            return response()->json(['message' => 'Assigned dose need to be taken first'], 500);
+        }
+
+        if($doseType == 'second' && $registration->doses()->where('dose_type', 'first')->doesntExist())
+        {
+            return response()->json(['message' => 'First dose not taken yet.'], 500);
+        }
+
+        if($doseType == 'booster' && $registration->doses()->where('dose_type', 'second')->doesntExist())
+        {
+            return response()->json(['message' => 'Second dose not taken yet.'], 500);
         }
 
         $dose = Dose::create([
