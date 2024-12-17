@@ -51,4 +51,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Registration::class);
     }
+
+    public function getRedirectRouteName()
+    {
+        switch($this->role):
+            // case 1: return 'admin.index';
+            case 2: return 'center.index';
+        endswitch;
+        return 'front.index';
+    }
 }
