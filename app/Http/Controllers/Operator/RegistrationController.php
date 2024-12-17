@@ -37,9 +37,9 @@ class RegistrationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Registration $registration)
     {
-        //
+        return view('operator.registrations.show', compact('registration'));
     }
 
     /**
@@ -55,7 +55,7 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd('here');
     }
 
     /**

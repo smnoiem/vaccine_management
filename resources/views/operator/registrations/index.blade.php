@@ -35,7 +35,7 @@
                                 </button>
 
                                 <div class="dropdown-menu" style="">
-                                    <a class="dropdown-item" href="{{route('operator.registrations.edit', $registration->id)}}">Edit</a>
+                                    <a class="dropdown-item" href="{{route('operator.registrations.show', $registration->id)}}">View</a>
 
                                     <div class="dropdown-divider"></div>
                                     
