@@ -48,6 +48,10 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
 
     Route::get('registrations/{registration}/doses', [OperatorRegistrationController::class, 'getDoses'])->name('registrations.doses');
 
+    Route::get('registrations/{registration}/doses/create', [OperatorRegistrationController::class, 'doseCreate'])->name('registrations.doses.create');
+
+    Route::post('registrations/{registration}/doses', [OperatorRegistrationController::class, 'doseStore'])->name('registrations.doses.store');
+
 });
 
 

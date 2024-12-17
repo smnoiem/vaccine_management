@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
 use App\Models\Registration;
+use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -75,5 +76,19 @@ class RegistrationController extends Controller
     public function getDoses(Registration $registration)
     {
         return view('operator.registrations.doses', compact('registration'));
+    }
+
+    public function doseCreate(Registration $registration)
+    {
+        $vaccines = Vaccine::all();
+
+        $selectedVaccine = $registration->doses()->whereHas('vaccine')->first()?->vaccine;
+
+        return view('operator.registrations.doses.create', compact('registration', 'vaccines', 'selectedVaccine'));
+    }
+
+    public function doseStore()
+    {
+        //
     }
 }

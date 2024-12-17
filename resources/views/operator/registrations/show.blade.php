@@ -95,8 +95,7 @@
                                 location.replace('{{route("operator.registrations.show", $registration->id)}}')
                             },750)
                         }else if(resp == 2){
-                            $('#msg').html("<div class='alert alert-danger'>Email already exist.</div>");
-                            $('[name="email"]').addClass("border-danger")
+                            alert_toast('Something went wrong.',"error");
                             end_load()
                         }
                         else {

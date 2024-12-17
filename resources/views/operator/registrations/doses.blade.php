@@ -4,7 +4,7 @@
         <div class="card card-outline card-success">
             <div class="card-header">
                 <div class="card-tools">
-                    <a class="btn btn-block btn-sm btn-default btn-flat border-primary" href="#"><i class="fa fa-plus"></i> Add Another Dose</a>
+                    <a class="btn btn-block btn-sm btn-default btn-flat border-primary" href="{{ route('operator.registrations.doses.create', $registration->id) }}"><i class="fa fa-plus"></i> Add Another Dose</a>
                 </div>
             </div>
             <div class="card-body">
@@ -34,7 +34,7 @@
                                 Action
                                 </button>
                                 <div class="dropdown-menu" style="">
-                                    <a href="#" class="dropdown-item">Mark as taken</a>
+                                    <a href="#" class="dropdown-item"><i class="fa fa-check mr-1 text-success"></i>Mark as taken</a>
                                 </div>
                             </td>
                         </tr>	
@@ -44,45 +44,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function(){
-            $('#list').dataTable()
-            $('.view_registration').click(function(){
-                var url = '{{route("operator.registrations.show", ":id")}}';
-                url = url.replace(':id', $(this).attr('data-id'));
-                uni_modal("<i class='fa fa-id-card'></i> Registration Details", url)
-            })
-            $('.delete_registration').click(function(){
-                _conf("Are you sure to delete this registration?","delete_registration",[$(this).attr('data-id')])
-            })
-        })
-        function delete_registration($id){
-            var url = '{{route("operator.registrations.destroy", ":id")}}'
-            url = url.replace(':id', $id);
-            start_load()
-            $.ajax({
-                url:url,
-                type:'DELETE',
-                data:{_token: '{{csrf_token()}}', id:$id},
-                success:function(resp){
-                    if(resp==1){
-                        alert_toast("Data successfully deleted",'success')
-                        setTimeout(function(){
-                            location.reload()
-                        },1500)
-
-                    }
-                    else {
-					    alert_toast("something went wrong", "danger");
-					    end_load()
-                    }
-                },
-                error:function(err) {
-                    console.log(err.responseJSON.message);
-					alert_toast(err.responseJSON.message, "danger");
-					end_load()
-                }
-            })
-        }
-    </script>
 @endsection
