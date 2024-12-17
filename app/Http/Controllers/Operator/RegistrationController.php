@@ -136,10 +136,16 @@ class RegistrationController extends Controller
     {
         $validOperator = auth()->user()->center == $registration->center;
         $validDose = $dose->registration->id == $registration->id;
-        $validRequest = $validOperator && $validDose && $dose->scheduled_at;
+        $validRequest = $validOperator && $validDose;
 
         if (!$validRequest)
-            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'This dose cannot be given']);
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Unauthorized request']);
+
+        if ($dose->taken_date)
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Already taken']);
+
+        if (!$dose->scheduled_at)
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Not yet scheduled']);
 
         if (!$dose->taken_date) {
             $dose->taken_date = now();
