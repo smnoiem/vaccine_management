@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Operator\DashboardController;
+use App\Http\Controllers\Operator\RegistrationController as OperatorRegistrationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
@@ -37,6 +39,23 @@ Route::name('front.')->group(function () {
     });
 
 });
+
+Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::resource('registrations', OperatorRegistrationController::class);
+
+    Route::get('registrations/{registration}/doses', [OperatorRegistrationController::class, 'getDoses'])->name('registrations.doses');
+
+    Route::get('registrations/{registration}/doses/create', [OperatorRegistrationController::class, 'doseCreate'])->name('registrations.doses.create');
+
+    Route::post('registrations/{registration}/doses', [OperatorRegistrationController::class, 'doseStore'])->name('registrations.doses.store');
+
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

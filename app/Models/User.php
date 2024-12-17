@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,19 @@ class User extends Authenticatable
     public function registration(): HasOne
     {
         return $this->hasOne(Registration::class);
+    }
+
+    public function center():BelongsTo
+    {
+        return $this->belongsTo(Center::class);
+    }
+
+    public function getRedirectRouteName()
+    {
+        switch($this->role):
+            // case 1: return 'admin.index';
+            case 2: return 'center.index';
+        endswitch;
+        return 'front.index';
     }
 }
