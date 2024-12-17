@@ -7,7 +7,7 @@
     <hr>
     
     <div style="padding:6%;font-size:1.5rem;">
-        <a href="">Vaccine Registrations</a> <br>
+        <a href="{{ route('operator.registrations.index') }}">Vaccine Registrations</a> <br>
     </div>
 
 @endsection

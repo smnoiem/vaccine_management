@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Operator\DashboardController;
+use App\Http\Controllers\Operator\RegistrationController as OperatorRegistrationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
@@ -42,6 +43,8 @@ Route::name('front.')->group(function () {
 Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::resource('registrations', OperatorRegistrationController::class);
 
 });
 
