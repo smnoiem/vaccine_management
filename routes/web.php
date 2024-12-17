@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Operator\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
@@ -37,6 +38,15 @@ Route::name('front.')->group(function () {
     });
 
 });
+
+Route::name('operator.')->prefix('center')->middleware('auth')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
