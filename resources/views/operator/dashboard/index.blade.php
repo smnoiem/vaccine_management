@@ -1,4 +1,4 @@
-@extends('operator.layouts.body', ['title' => 'Vaccine Center Dashboard'])
+@extends('operator.layouts.body', ['title' => 'Vaccine Center Dashboard', 'page'=> 'operator_dashboard'])
 
 @section('content')
 

@@ -15,7 +15,7 @@ class RegistrationController extends Controller
     {
         $registrations = auth()->user()?->center?->registrations;
 
-        dd($registrations);
+        return view('operator.registrations.index', compact('registrations'));
     }
 
     /**
