@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Operator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dose;
 use App\Models\Registration;
 use App\Models\Vaccine;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RegistrationController extends Controller
@@ -87,8 +89,32 @@ class RegistrationController extends Controller
         return view('operator.registrations.doses.create', compact('registration', 'vaccines', 'selectedVaccine'));
     }
 
-    public function doseStore()
+    public function doseStore(Request $request, Registration $registration)
     {
-        //
+        $validOperator = auth()->user()->center == $registration->center;
+
+        if (!$validOperator)
+            abort(401);
+
+        $doseType = $request->input('dose_type');
+
+        if ($registration->doses()->where('dose_type', '$dose_type')->exists()) {
+            return 2;
+        }
+
+        $dose = Dose::create([
+            'registration_id' => $registration->id,
+            'vaccine_id' => $request->input('vaccine'),
+            'dose_type' => $request->input('dose_type'),
+            'scheduled_date' => $request->input('date'),
+            'given_by' => null,
+        ]);
+
+        if(!$dose)
+        {
+            return 2;
+        }
+
+        return 1;
     }
 }

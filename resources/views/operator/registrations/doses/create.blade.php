@@ -24,7 +24,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label">Dose Type</label>
-                            <select class="form-select" aria-label="User role options" name="type" required>
+                            <select class="form-select" aria-label="User role options" name="dose_type" required>
                                 <option value="first">First Dose</option>
                                 <option value="second">Second Dose</option>
                                 <option value="booster">Booster Dose</option>
@@ -37,6 +37,9 @@
                                     <option value="{{$vaccine->id}}" @selected($vaccine->id == $selectedVaccine?->id)>{{$vaccine->vendor . ' - ' . $vaccine->name}}</option>
                                 @endforeach
                             </select>
+                            @if($selectedVaccine)
+                                <input type="hidden" name="vaccine" value="{{ $selectedVaccine->id }}">
+                            @endif
                         </div>
                         <div class="form-group">
                             <label class="control-label">Appointment Date</label>
