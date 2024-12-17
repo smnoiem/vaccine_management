@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/create_vaccine_registration', function (Request $request) {
+Route::post('/create_vaccine_registration_18101323', function (Request $request) {
 
     $registration = Registration::create([
         'user_id' => $request->input('user_id'),
@@ -17,13 +17,13 @@ Route::post('/create_vaccine_registration', function (Request $request) {
 
 });
 
-Route::get('/registration/{registration}', function (Request $request, Registration $registration) {
+Route::get('/registration_18101323/{registration}', function (Request $request, Registration $registration) {
     $registration = $registration->toArray();
     return response()->json($registration);
 });
 
 
-Route::post('/create_vaccine_dose', function (Request $request) {
+Route::post('/create_vaccine_dose_18101323', function (Request $request) {
 
     $dose = Dose::create([
         'registration_id' => $request->input('registration_id'),
@@ -38,7 +38,7 @@ Route::post('/create_vaccine_dose', function (Request $request) {
 
 });
 
-Route::get('/dose/{dose}', function (Request $request, Dose $dose) {
+Route::get('/dose_18101323/{dose}', function (Request $request, Dose $dose) {
     $dose = $dose->toArray();
     return response()->json($dose);
 });
