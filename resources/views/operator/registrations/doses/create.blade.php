@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Select Vaccine</label>
-                            <select class="form-select" aria-label="User role options" name="vaccine" required @readonly($selectedVaccine)>
+                            <select class="form-select" aria-label="User role options" name="vaccine" required @disabled($selectedVaccine)>
                                 @foreach ($vaccines as $vaccine)
                                     <option value="{{$vaccine->id}}" @selected($vaccine->id == $selectedVaccine?->id)>{{$vaccine->vendor . ' - ' . $vaccine->name}}</option>
                                 @endforeach
