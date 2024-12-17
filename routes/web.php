@@ -52,6 +52,8 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
 
     Route::post('registrations/{registration}/doses', [OperatorRegistrationController::class, 'doseStore'])->name('registrations.doses.store');
 
+    Route::get('registrations/{registration}/doses/{dose}', [OperatorRegistrationController::class, 'markDoseAsTaken'])->name('registrations.doses.mark-as-taken');
+
 });
 
 

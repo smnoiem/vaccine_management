@@ -34,7 +34,7 @@
                                 Action
                                 </button>
                                 <div class="dropdown-menu" style="">
-                                    <a href="#" class="dropdown-item"><i class="fa fa-check mr-1 text-success"></i>Mark as taken</a>
+                                    <a href="{{ route('operator.registrations.doses.mark-as-taken', [$registration->id, $dose->id]) }}" class="dropdown-item"><i class="fa fa-check mr-1 text-success"></i>Mark as taken</a>
                                 </div>
                             </td>
                         </tr>	
