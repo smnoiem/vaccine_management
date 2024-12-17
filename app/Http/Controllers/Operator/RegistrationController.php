@@ -53,9 +53,15 @@ class RegistrationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Registration $registration)
     {
-        dd('here');
+        $user = $registration->user;
+        
+        $user->phone = $request->input('phone', $user->phone);
+        $user->dob = $request->input('dob', $user->dob);
+        $user->save();
+
+        return 1;
     }
 
     /**

@@ -92,7 +92,7 @@
                         if(resp == 1){
                             alert_toast('Data successfully saved.',"success");
                             setTimeout(function(){
-                                location.replace('{{route("operator.registrations.index")}}')
+                                location.replace('{{route("operator.registrations.show", $registration->id)}}')
                             },750)
                         }else if(resp == 2){
                             $('#msg').html("<div class='alert alert-danger'>Email already exist.</div>");
