@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCenterRequest;
 use App\Models\Center;
+use App\Models\Vaccine;
+use App\Models\VaccineStock;
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
@@ -117,5 +119,39 @@ class CenterController extends Controller
 
         if($isDeleted) return 1;
         else return response()->json(['message' => 'failed deteling the center'], 500);
+    }
+
+    public function sendVaccine(Center $center)
+    {
+        $vaccines = Vaccine::all();
+        return view('admin.centers.send-vaccine', compact('center', 'vaccines'));
+    }
+
+    public function sendVaccineStore(Request $request, Center $center)
+    {
+        $vaccineId = $request->input('vaccine_id');
+        $vaccine = Vaccine::findOrFail($vaccineId);
+
+        $centerVaccineStock = VaccineStock::where('vaccine_id', $vaccine->id)
+            ->where('center_id', $center->id)
+            ->first();
+
+        if ($centerVaccineStock) {
+
+            $centerVaccineStock->quantity += $request->input('quantity');
+            $centerVaccineStock = $centerVaccineStock->update();
+
+        } else {
+            $centerVaccineStock = VaccineStock::create([
+                'vaccine_id' => $vaccine->id,
+                'center_id' => $center->id,
+                'quantity' => $request->input('quantity'),
+            ]);
+        }
+
+        if (!$centerVaccineStock)
+            return response('Updating Failed!', 500);
+        else
+            return 1;
     }
 }
