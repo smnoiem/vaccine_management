@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Operator\DashboardController;
 use App\Http\Controllers\Operator\RegistrationController as OperatorRegistrationController;
@@ -57,6 +58,11 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
 });
 
 
+Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
+
+    Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+
+});
 
 
 Route::get('/dashboard', function () {
