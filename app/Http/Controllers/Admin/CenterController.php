@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCenterRequest;
 use App\Models\Center;
+use App\Models\Vaccine;
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
@@ -117,5 +118,11 @@ class CenterController extends Controller
 
         if($isDeleted) return 1;
         else return response()->json(['message' => 'failed deteling the center'], 500);
+    }
+
+    public function sendVaccine(Center $center)
+    {
+        $vaccines = Vaccine::all();
+        return view('admin.centers.send-vaccine', compact('center', 'vaccines'));
     }
 }
