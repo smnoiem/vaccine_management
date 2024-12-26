@@ -102,6 +102,17 @@ class CenterController extends Controller
      */
     public function destroy(Request $request, Center $center)
     {
+        if($center->registrations()->exists())
+        {
+            return 'vaccine application exists in this center. cannot delete.';
+        }
+
+        foreach($center->operators as $user)
+        {
+            $user->center_id = null;
+            $user->update();
+        }
+
         $isDeleted = $center->delete();
 
         if($isDeleted) return 1;
