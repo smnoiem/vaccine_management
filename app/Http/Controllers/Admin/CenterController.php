@@ -29,4 +29,19 @@ class CenterController extends Controller
     {
         return view('admin.centers.partials.show', ['center' => $center]);
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, Center $center)
+    {
+        $isDeleted = $center->delete();
+
+        if($isDeleted) return 1;
+        else return response()->json(['message' => 'failed deteling the center'], 500);
+    }
 }

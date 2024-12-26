@@ -30,9 +30,9 @@
                                 <div class="dropdown-menu" style="">
                                 <a class="dropdown-item view_center" href="javascript:void(0)" data-id="{{$center->id}}">View</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('admin.centers.edit', $center->id)}}">Edit</a>
+                                <a class="dropdown-item" href="{{ route('admin.centers.edit', $center->id) }}">Edit</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)" data-id="{{$center->id}}">Delete</a>
+                                <a class="dropdown-item delete_center" href="javascript:void(0)" data-id="{{$center->id}}">Delete</a>
                                 </div>
                             </td>
                         </tr>	
@@ -52,14 +52,51 @@
 
         $('#center_list_table').dataTable();
 
-
         $('.view_center').click(function() {
             var url = '{{ route("admin.centers.show", ":id") }}';
             url = url.replace(':id', $(this).attr('data-id'));
             uni_modal("<i class='fa fa-id-card'></i> center Details", url)
         });
 
-    })
+        $('.delete_center').click(function(){
+            _conf("Are you sure to delete this center?","delete_center",[$(this).attr('data-id')])
+        });
+
+    });
+
+
+    function delete_center($id)
+    {
+        var url = '{{ route("admin.centers.destroy", ":id") }}';
+
+        url = url.replace(':id', $id);
+
+        start_load()
+
+        $.ajax({
+            url: url,
+            type: 'DELETE',
+            data: {_token: '{{csrf_token()}}', id:$id},
+            success: function(resp) {
+                if(resp==1){
+                    alert_toast("Center successfully deleted", 'success');
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1500);
+                }
+                else {
+                    alert_toast("something went wrong", "error");
+                    end_load()
+                }
+            },
+            error: function(err) {
+                console.log(err);
+                alert_toast("something went wrong", "error");
+                end_load()
+            }
+        });
+    }
 
 </script>
 @endpush
