@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($vaccineStocks as $vaccineStock)
+                        @foreach($vaccineStocks ?? [] as $vaccineStock)
                         <tr>
                             <th class="text-center">{{$loop->iteration}}</th>
                             <td><b>{{ ucwords($vaccineStock->vaccine->vendor) }}</b></td>

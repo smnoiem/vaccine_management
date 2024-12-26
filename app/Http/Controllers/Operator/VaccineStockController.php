@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class VaccineStockController extends Controller
 {
-    public function getVaccineStock()
+    public function getVaccineStock(Request $request)
     {
-        $vaccineStocks = auth()->user()->center->vaccineStocks;
+        $vaccineStocks = auth()->user()->center->vaccineStocks ?? [];
 
         return view('operator.vaccine-stock.index', ['vaccineStocks' => $vaccineStocks]);
     }
