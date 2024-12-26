@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Operator\DashboardController;
 use App\Http\Controllers\Operator\RegistrationController as OperatorRegistrationController;
+use App\Http\Controllers\Operator\VaccineStockController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
@@ -55,6 +56,8 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
     Route::post('registrations/{registration}/doses', [OperatorRegistrationController::class, 'doseStore'])->name('registrations.doses.store');
 
     Route::get('registrations/{registration}/doses/{dose}', [OperatorRegistrationController::class, 'markDoseAsTaken'])->name('registrations.doses.mark-as-taken');
+
+    Route::get('vaccine-stock', [VaccineStockController::class, 'getVaccineStock'])->name('vaccine-stock.index');
 
 });
 
