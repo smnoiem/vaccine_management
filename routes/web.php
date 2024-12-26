@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CenterController as AdminCenterController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Operator\DashboardController;
@@ -61,6 +62,8 @@ Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->grou
 Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(function () {
 
     Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+
+    Route::resource('centers', AdminCenterController::class);
 
 });
 
