@@ -94,6 +94,11 @@
 	     $('#confirm_modal .modal-body').html($msg)
 	     $('#confirm_modal').modal('show')
 	  }
+
+	  window._conf_close = function () {
+		$('#confirm_modal').modal('hide')
+	  }
+
 	   window.alert_toast= function($msg = 'no message passed',$bg = 'success' ,$pos=''){
 	   	 var Toast = Swal.mixin({
 	      toast: true,
