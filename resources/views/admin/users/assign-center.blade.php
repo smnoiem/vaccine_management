@@ -1,4 +1,4 @@
-@extends('admin.layouts.body', ['title' => 'Edit User', 'page'=> 'edit_user'])
+@extends('admin.layouts.body', ['title' => 'Appoint to Center', 'page'=> 'users'])
 @section('content')
     <div class="col-lg-12">
         <div class="card">
@@ -85,9 +85,9 @@
                     }
 				},
                 error:function(err) {
+					end_load()
                     console.log(err.responseJSON.message);
 					alert_toast(err.responseJSON.message, "danger");
-					end_load()
                 }
 			})
 		})

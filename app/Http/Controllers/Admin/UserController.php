@@ -145,7 +145,9 @@ class UserController extends Controller
     if ($validated['user_id'] != $user->id)
       abort(401);
 
-    $isAssigned = $user->update(['center_id' => $validated['user_id']]);
+    $user->center_id = $validated['center_id'];
+    
+    $isAssigned = $user->update();
 
     if ($isAssigned)
       return 1;
