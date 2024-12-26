@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCenterRequest;
 use App\Models\Center;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,38 @@ class CenterController extends Controller
     public function show(Request $request, Center $center)
     {
         return view('admin.centers.partials.show', ['center' => $center]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Center $center)
+    {
+        return view('admin.centers.edit', ['center' => $center]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(StoreCenterRequest $request, Center $center)
+    {
+        $validated = $request->validated();
+
+        $center->fill($validated);
+
+        $saved = $center->update();
+
+        if ($saved)
+            return 1;
+
+        return response('Center Data Couldn\'t be Updated!', 500);
     }
 
 
