@@ -31,6 +31,26 @@ class CenterController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreCenterRequest $request)
+    {
+        $validated = $request->validated();
+
+        $center = new Center($validated);
+
+        $saved = $center->save();
+
+        if ($saved)
+            return 1;
+
+        return response('Center couldn\'t be created!', 500);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
