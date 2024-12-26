@@ -131,4 +131,30 @@ class RegistrationController extends Controller
 
         return 1;
     }
+
+    public function markDoseAsTaken(Registration $registration, Dose $dose)
+    {
+        $validOperator = auth()->user()->center == $registration->center;
+        $validDose = $dose->registration->id == $registration->id;
+        $validRequest = $validOperator && $validDose;
+
+        if (!$validRequest)
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Unauthorized request']);
+
+        if ($dose->taken_date)
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Already taken']);
+
+        if (!$dose->scheduled_at)
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Not yet scheduled']);
+
+        if (!$dose->taken_date) {
+            $dose->taken_date = now();
+            $dose->given_by = auth()->user()->id;
+            $dose->update();
+        }
+
+        $vaccines = Vaccine::all();
+
+        return redirect(route('operator.registrations.doses', $registration->id))->with(['success' => 'Vaccined marked taken']);
+    }
 }
