@@ -93,6 +93,9 @@ class UserController extends Controller
    */
   public function update(StoreUserRequest $request, User $user)
   {
+    
+    $oldPassword = $user->password;
+
     $validated = $request->validated();
 
     $user->fill($validated);
@@ -105,8 +108,12 @@ class UserController extends Controller
 
       event(new PasswordReset($request->user));
     }
+    else
+    {
+      $user->password = $oldPassword;
+    }
 
-    $saved = $user->save();
+    $saved = $user->update();
 
     if ($saved)
       return 1;

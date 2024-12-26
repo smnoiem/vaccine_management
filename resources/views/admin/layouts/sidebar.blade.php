@@ -7,10 +7,6 @@
     </div>
     <div class="sidebar">
       <nav class="mt-2">
-      <a href="#" class="nav-link nav-new_content tree-item">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>Add New</p>
-        </a>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
          <li class="nav-item dropdown">
             <a href="{{route('admin.index')}}" class="nav-link nav-admin_dashboard">

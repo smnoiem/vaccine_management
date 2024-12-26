@@ -70,9 +70,9 @@
                     }
 				},
                 error:function(err) {
+					end_load();
                     console.log(err.responseJSON.message);
 					alert_toast(err.responseJSON.message, "danger");
-					end_load()
                 }
 			})
 		})
