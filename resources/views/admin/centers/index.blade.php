@@ -28,7 +28,7 @@
                                 Action
                                 </button>
                                 <div class="dropdown-menu" style="">
-                                <a class="dropdown-item" href="javascript:void(0)" data-id="{{$center->id}}">View</a>
+                                <a class="dropdown-item view_center" href="javascript:void(0)" data-id="{{$center->id}}">View</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('admin.centers.edit', $center->id)}}">Edit</a>
                                 <div class="dropdown-divider"></div>
@@ -51,6 +51,13 @@
     $(document).ready(function(){
 
         $('#center_list_table').dataTable();
+
+
+        $('.view_center').click(function() {
+            var url = '{{ route("admin.centers.show", ":id") }}';
+            url = url.replace(':id', $(this).attr('data-id'));
+            uni_modal("<i class='fa fa-id-card'></i> center Details", url)
+        });
 
     })
 

@@ -18,4 +18,15 @@ class CenterController extends Controller
         $centers = Center::all();
         return view('admin.centers.index', ['centers' => $centers]);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, Center $center)
+    {
+        return view('admin.centers.partials.show', ['center' => $center]);
+    }
 }
