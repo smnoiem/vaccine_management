@@ -58,8 +58,8 @@
             uni_modal("<i class='fa fa-id-card'></i> center Details", url)
         });
 
-        $('.delete_center').click(function(){
-            _conf("Are you sure to delete this center?","delete_center",[$(this).attr('data-id')])
+        $('.delete_center').click(function() {
+            _conf("Are you sure to delete this center? <br> <small>Associated vaccine application and assigned employees will be disassociated.</small>", "delete_center", [$(this).attr('data-id')]);
         });
 
     });
@@ -71,7 +71,8 @@
 
         url = url.replace(':id', $id);
 
-        start_load()
+        start_load();
+        _conf_close();
 
         $.ajax({
             url: url,
@@ -86,7 +87,7 @@
                     }, 1500);
                 }
                 else {
-                    alert_toast("something went wrong", "error");
+                    alert_toast(resp, "error");
                     end_load()
                 }
             },
