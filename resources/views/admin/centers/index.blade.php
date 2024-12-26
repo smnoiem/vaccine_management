@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table class="table tabe-hover table-bordered" id="list">
+                <table class="table tabe-hover table-bordered" id="center_list_table">
                     <thead>
                         <tr>
                             <th class="text-center">#</th>
@@ -43,3 +43,16 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    
+<script>
+
+    $(document).ready(function(){
+
+        $('#center_list_table').dataTable();
+
+    })
+
+</script>
+@endpush
