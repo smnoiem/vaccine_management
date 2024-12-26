@@ -7,13 +7,9 @@
     </div>
     <div class="sidebar">
       <nav class="mt-2">
-      <a href="#" class="nav-link nav-new_content tree-item">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>Add New</p>
-        </a>
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
          <li class="nav-item dropdown">
-            <a href="{{route('admin.index')}}" class="nav-link nav-home">
+            <a href="{{route('admin.index')}}" class="nav-link nav-admin_dashboard">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -21,7 +17,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link nav-edit_user">
+            <a href="#" class="nav-link nav-centers">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Centers
@@ -30,13 +26,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link nav-new_user tree-item">
+                <a href="{{ route('admin.centers.create') }}" class="nav-link nav-new_center tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Add New</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link nav-user_list tree-item">
+                <a href="{{ route('admin.centers.index') }}" class="nav-link nav-center_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List</p>
                 </a>
@@ -44,7 +40,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link nav-edit_user">
+            <a href="#" class="nav-link nav-users">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Employees
@@ -53,13 +49,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link nav-new_user tree-item">
+                <a href="{{ route('admin.users.create') }}" class="nav-link nav-new_user tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Add New</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link nav-user_list tree-item">
+                <a href="{{ route('admin.users.index') }}" class="nav-link nav-user_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List</p>
                 </a>

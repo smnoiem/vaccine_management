@@ -1,4 +1,4 @@
-@extends('admin.layouts.body', ['title' => 'Edit Center', 'page'=> 'edit_center'])
+@extends('admin.layouts.body', ['title' => 'Edit Center', 'page'=> 'centers'])
 @section('content')
 	<div class="col-lg-12">
 		<div class="card">
@@ -70,9 +70,9 @@
                     }
 				},
                 error:function(err) {
+					end_load();
                     console.log(err.responseJSON.message);
 					alert_toast(err.responseJSON.message, "danger");
-					end_load()
                 }
 			})
 		})
