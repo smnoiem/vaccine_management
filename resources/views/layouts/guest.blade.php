@@ -18,12 +18,10 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
 
             <!-- Adjusted Box Width and Height -->
-            <div class="w-full sm:w-100 mt-6 px-8 py-6 bg-white shadow-md overflow-hidden sm:rounded-lg rounded-xl">
-            {{-- <div class="w-full sm:w-100 mt-6 px-8 py-6 bg-white shadow-md overflow-hidden sm:rounded-lg rounded-xl"> --}}
+            <div class="w-full sm:w-96 mt-6 px-8 py-6 bg-white shadow-md overflow-hidden sm:rounded-lg rounded-xl">
                 <!-- Logo or Heading Section -->
                 <div class="text-center mb-6">
                     <h1 class="text-4xl font-extrabold text-orange-600">Vaccine Portal</h1>
-                    <p class="text-sm text-gray-600">Login to your account</p>
                 </div>
 
                 <!-- Main Content (e.g., login form) -->
