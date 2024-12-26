@@ -56,9 +56,10 @@
 	      start_load()
 	      $.ajax({
 	          url:$url,
-	          error:err=>{
-	              console.log('An error occured')
-	              alert("An error occured")
+	          error:err => {
+	              console.log(err)
+				  alert_toast('Something went wrong', 'error');
+				  end_load()
 	          },
 	          success:function(resp){
 	              if(resp){
@@ -83,7 +84,7 @@
                   else {
 	                    end_load()
                         console.log('Empty response');
-                        alert_toast('Empty response');
+                        alert_toast('Empty response', 'warning');
                   }
 	          }
 	      })
