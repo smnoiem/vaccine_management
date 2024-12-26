@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCenterRequest;
 use App\Models\Center;
 use App\Models\Vaccine;
+use App\Models\VaccineStock;
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
@@ -124,5 +125,33 @@ class CenterController extends Controller
     {
         $vaccines = Vaccine::all();
         return view('admin.centers.send-vaccine', compact('center', 'vaccines'));
+    }
+
+    public function sendVaccineStore(Request $request, Center $center)
+    {
+        $vaccineId = $request->input('vaccine_id');
+        $vaccine = Vaccine::findOrFail($vaccineId);
+
+        $centerVaccineStock = VaccineStock::where('vaccine_id', $vaccine->id)
+            ->where('center_id', $center->id)
+            ->first();
+
+        if ($centerVaccineStock) {
+
+            $centerVaccineStock->quantity += $request->input('quantity');
+            $centerVaccineStock = $centerVaccineStock->update();
+
+        } else {
+            $centerVaccineStock = VaccineStock::create([
+                'vaccine_id' => $vaccine->id,
+                'center_id' => $center->id,
+                'quantity' => $request->input('quantity'),
+            ]);
+        }
+
+        if (!$centerVaccineStock)
+            return response('Updating Failed!', 500);
+        else
+            return 1;
     }
 }
