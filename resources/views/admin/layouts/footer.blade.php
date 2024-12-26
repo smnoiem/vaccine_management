@@ -190,3 +190,5 @@ $('.number').on('input keyup keypress',function(){
     
     });
 </script>
+
+@stack('scripts')
