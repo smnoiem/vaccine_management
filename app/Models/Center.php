@@ -18,4 +18,9 @@ class Center extends Model
     {
         return $this->hasMany(Registration::class);
     }
+
+    public function vaccineStocks(): HasMany
+    {
+        return $this->hasMany(VaccineStock::class);
+    }
 }
