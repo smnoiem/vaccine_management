@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CenterController as AdminCenterController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Front\HomeController;
@@ -67,6 +67,17 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
     Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
 
     Route::resource('centers', AdminCenterController::class);
+
+    Route::get('centers/{center}/send-vaccine', [AdminCenterController::class, 'sendVaccine'])->name('centers.send-vaccine');
+
+    Route::post('centers/{center}/send-vaccine', [AdminCenterController::class, 'sendVaccineStore'])->name('centers.send-vaccine-store');
+
+
+    Route::resource('users', AdminUserController::class);
+
+    Route::get('users/{user}/assign-center', [AdminUserController::class, 'assignCenter'])->name('users.assign-center');
+
+    Route::post('users/{user}/assign-center', [AdminUserController::class, 'assignCenterStore'])->name('users.assign-center-store');
 
 });
 

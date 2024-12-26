@@ -2,6 +2,10 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- Logo or Header -->
+        <div class="text-center mb-6">
+            <p class="text-sm text-orange-500">Fill out the form below to register your account.</p>
+        </div>
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -44,7 +48,8 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+
+            <x-primary-button class="ms-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
