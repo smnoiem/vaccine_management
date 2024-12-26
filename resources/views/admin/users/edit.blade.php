@@ -1,4 +1,4 @@
-@extends('admin.layouts.body', ['title' => 'Edit User', 'page'=> 'edit_user'])
+@extends('admin.layouts.body', ['title' => 'Edit User', 'page'=> 'users'])
 @section('content')
 	<div class="col-lg-12">
 		<div class="card">

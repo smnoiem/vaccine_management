@@ -21,7 +21,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link nav-centers">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Centers
@@ -44,7 +44,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link nav-users">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Employees
