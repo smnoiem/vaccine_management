@@ -120,10 +120,30 @@
                                             <a class="nav-link active" aria-current="page"
                                                 href="{{ route('front.vaccine.certificate') }}">Download Certificate</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+                                        
+                                            <!-- Hidden form for the POST request -->
+                                            <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
                                     @else
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page"
                                                 href="{{ route('front.registration.create') }}">Apply</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+                                        
+                                            <!-- Hidden form for the POST request -->
+                                            <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                                                @csrf
+                                            </form>
                                         </li>
                                     @endif
                                 @endif
