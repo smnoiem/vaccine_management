@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($registrations as $registration)
+                        @foreach($registrations ?? [] as $registration)
                         <tr>
                             <th class="text-center">{{$loop->iteration}}</th>
                             <td><b>{{ ucwords($registration->user->nid) }}</b></td>

@@ -53,13 +53,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link nav-new_user tree-item">
+                <a href="{{route('admin.users.create')}}" class="nav-link nav-new_user tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Add New</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link nav-user_list tree-item">
+                <a href="{{route('admin.users.index')}}" class="nav-link nav-user_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List</p>
                 </a>

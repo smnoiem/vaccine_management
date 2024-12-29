@@ -53,16 +53,17 @@ class User extends Authenticatable
         return $this->hasOne(Registration::class);
     }
 
-    public function center():BelongsTo
+    public function center(): BelongsTo
     {
         return $this->belongsTo(Center::class);
     }
 
     public function getRedirectRouteName()
     {
-        switch($this->role):
+        switch ($this->role):
             // case 1: return 'admin.index';
-            case 2: return 'center.index';
+            case 2:
+                return 'operator.index';
         endswitch;
         return 'front.index';
     }
