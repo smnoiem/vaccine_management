@@ -19,8 +19,8 @@
         /* Background styling */
         body {
             background-image: url('{{ asset('img/bgg1.jpg') }}');
-            background-size: contain; /* Or remove this property */
-            background-position: center center;
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             min-height: 100vh;
             display: flex;
@@ -30,78 +30,62 @@
 
         /* White margin container */
         .white-margin-container {
-            background-color: white; /* White background */
-            padding: 40px; /* Space inside the container */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-            width: 90%; /* Responsive width */
-            max-width: 800px; /* Maximum width */
-        }
-
-        /* Fade-in animation */
-        .fade-in {
+            background-color: rgb(252, 214, 196);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
             animation: fadeIn 1.5s ease-in-out;
         }
 
+        /* Fade-in animation */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Pop-up animation */
-        .pop-up {
-            animation: popup 1.5s ease-out;
-        }
-
+        /* Pop-up animation for heading */
         @keyframes popup {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         /* Styling for the heading */
         .heading {
             font-size: 3rem;
             font-weight: 800;
-            color: #ff0303; /* Vibrant red */
+            color: #ff0303;
             text-align: center;
             margin-bottom: 30px;
-        }
-
-        /* Styling for the instructional text */
-        .instructions {
-            font-size: 1rem;
-            color: #4B5563; /* Gray */
-            text-align: center;
-            margin-top: 20px;
+            animation: popup 1.5s ease-out;
         }
 
         /* Styling for the login box */
         .login-box {
             font-size: 1rem;
-            color: #4B5563; /* Gray */
+            color: #4B5563;
             text-align: center;
             margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for login box */
+        .login-box:hover {
+            background-color: rgba(255, 255, 255, 0.8);
         }
     </style>
 </head>
 <body class="font-sans text-gray-900 antialiased">
     <!-- White Margin Container -->
-    <div class="white-margin-container fade-in">
+    <div class="white-margin-container">
         <!-- Heading with Pop-Up Animation -->
-        <div class="heading pop-up">
+        <div class="heading">
             Your Health Is Your Greatest Wealth!
         </div>
 
