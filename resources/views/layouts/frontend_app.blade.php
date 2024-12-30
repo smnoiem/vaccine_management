@@ -56,7 +56,7 @@
             background: url('{{ asset('img/bg-c.jpg') }}') no-repeat center center;
             background-size: cover;
             height: 85vh;
-            animation: fadeIn 2s ease-out; /* Animation for fade-in effect */
+            animation: fadeIn 2s ease-out;
         }
 
         /* Fade-in animation */
@@ -86,6 +86,10 @@
             font-size: 22px;
             color: #F26D3E;
         }
+        .nav-item.ms-5 {
+        margin-left: 60px; /* Customize spacing as needed */
+        }
+
     </style>
     <title>@yield('title')</title>
 </head>
@@ -141,6 +145,12 @@
                                                 @csrf
                                             </form>
                                         </li>
+
+                                        <li class="nav-item ms-5">
+                                            <a class="nav-link active" aria-current="page" href="{{ route('profile.edit') }}">
+                                                <i class="fa fa-user"></i>
+                                            </a>
+                                        </li>
                                     @else
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page"
@@ -153,6 +163,11 @@
                                             <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                                                 @csrf
                                             </form>
+                                        </li>
+                                        <li class="nav-item ms-5">
+                                            <a class="nav-link active" aria-current="page" href="{{ route('profile.edit') }}">
+                                                <i class="fa fa-user"></i>
+                                            </a>
                                         </li>
                                     @endif
                                 @endif
