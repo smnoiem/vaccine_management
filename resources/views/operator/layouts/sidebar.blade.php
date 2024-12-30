@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <div class="dropdown">
     <a href="./" class="brand-link text-center">
-    <large><b>Vaxx - Center</b></large>
+    <large><b>Vaccine - Center</b></large>
     </a>
     
     </div>

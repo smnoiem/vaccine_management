@@ -8,7 +8,7 @@
       </li>
     <?php endif; ?>
       <li>
-        <a class="nav-link text-white"  href="./" role="button"> <large><b> Vaxx</b></large></a>
+        <a class="nav-link text-white"  href="./" role="button"> <large><b> Vaccine Management</b></large></a>
       </li>
     </ul>
 

@@ -1,75 +1,78 @@
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <div class="dropdown">
-   	<a href="./" class="brand-link text-center">
-       <large><b>Vaxx - Admin</b></large>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <div class="dropdown">
+    <a href="./" class="brand-link text-center">
+      <large><b>Vaccine - Admin</b></large>
     </a>
-      
-    </div>
-    <div class="sidebar">
-      <nav class="mt-2">
+  </div>
+  <div class="sidebar">
+    <nav class="mt-2">
       <a href="#" class="nav-link nav-new_content tree-item">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>Add New</p>
-        </a>
-        <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
-         <li class="nav-item dropdown">
-            <a href="{{route('admin.index')}}" class="nav-link nav-home">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link nav-edit_user">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Centers
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link nav-new_user tree-item">
-                  <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Add New</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link nav-user_list tree-item">
-                  <i class="fas fa-angle-right nav-icon"></i>
-                  <p>List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link nav-edit_user">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Employees
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('admin.users.create')}}" class="nav-link nav-new_user tree-item">
-                  <i class="fas fa-angle-right nav-icon"></i>
-                  <p>Add New</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('admin.users.index')}}" class="nav-link nav-user_list tree-item">
-                  <i class="fas fa-angle-right nav-icon"></i>
-                  <p>List</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </aside>
+        <i class="nav-icon fas fa-edit"></i>
+        <p>Add New</p>
+      </a>
+      <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Dashboard -->
+        <li class="nav-item dropdown">
+          <a href="{{route('admin.index')}}" class="nav-link nav-home">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+
+        <!-- Centers -->
+        <li class="nav-item">
+          <a href="#" class="nav-link nav-edit_center">
+            <i class="nav-icon fas fa-building"></i>
+            <p>
+              Centers
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('admin.centers.create')}}" class="nav-link nav-new_center tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add New</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('admin.centers.index')}}" class="nav-link nav-center_list tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Employees -->
+        <li class="nav-item">
+          <a href="#" class="nav-link nav-edit_employee">
+            <i class="nav-icon fas fa-user-tie"></i>
+            <p>
+              Employees
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('admin.users.create')}}" class="nav-link nav-new_employee tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add New</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('admin.users.index')}}" class="nav-link nav-employee_list tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>List</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+
 @push('footer-script')
   <script>
   	$(document).ready(function(){
