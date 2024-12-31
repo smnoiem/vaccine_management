@@ -10,7 +10,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item dropdown">
-            <a href="{{ route('operator.index') }}" class="nav-link operator_dashboard">
+            <a href="{{ route('operator.index') }}" class="nav-link nav-operator_dashboard">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p> Center Dashboard </p>
             </a>

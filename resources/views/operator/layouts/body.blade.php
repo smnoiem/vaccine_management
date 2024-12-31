@@ -5,7 +5,7 @@
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
             <div class="wrapper">
                 
-                @include('operator.layouts.navbar')
+                @include('operator.layouts.topbar')
                 @include('operator.layouts.sidebar')
 
 
