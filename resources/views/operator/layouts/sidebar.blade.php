@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{ route('operator.vaccine-stock.index') }}" class="nav-link nav-user_list tree-item">
+                <a href="{{ route('operator.vaccine-stock.index') }}" class="nav-link nav-vaccine_stock tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>List</p>
                 </a>
@@ -55,3 +55,26 @@
     </nav>
     </div>
 </aside>
+
+@push('scripts')
+  <script>
+  	$(document).ready(function(){
+      var page = '{{$page ?? "home"}}';
+  		var s = '<?php echo isset($_GET['s']) ? $_GET['s'] : '' ?>';
+      if(s!='')
+        page = page+'_'+s;
+  		if($('.nav-link.nav-'+page).length > 0){
+             $('.nav-link.nav-'+page).addClass('active')
+  			if($('.nav-link.nav-'+page).hasClass('tree-item') == true){
+            $('.nav-link.nav-'+page).closest('.nav-treeview').siblings('a').addClass('active')
+  				$('.nav-link.nav-'+page).closest('.nav-treeview').parent().addClass('menu-open')
+  			}
+        if($('.nav-link.nav-'+page).hasClass('nav-is-tree') == true){
+          $('.nav-link.nav-'+page).parent().addClass('menu-open')
+        }
+
+  		}
+     
+  	})
+  </script>
+@endpush
