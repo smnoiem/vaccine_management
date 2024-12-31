@@ -25,7 +25,6 @@ class StoreRegistrationRequest extends FormRequest
     {
         return [
             'center_id' => 'required|exists:App\Models\Center,id',
-            ''
         ];
     }
 }

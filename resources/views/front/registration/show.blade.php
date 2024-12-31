@@ -48,19 +48,22 @@
                                         <tr>
                                             <td>{{$dose->dose_type}}</td>
                                             <td>
-                                                <input type="date" 
-                                                    name="scheduled_date" 
-                                                    value="{{ $dose->scheduled_date }}" 
-                                                    min="{{ today()->toDateString() }}" 
-                                                    class="scheduled_date" 
-                                                    data-dose-id="{{ $dose->id }}"
-                                                    style="border: 1px solid #ffa687; border-radius: 3px;"
-                                                >
+                                                
+                                                @if(!$dose->taken_date)
+                                                    <input type="date" 
+                                                        name="scheduled_date" 
+                                                        value="{{ $dose->scheduled_date }}" 
+                                                        min="{{ today()->toDateString() }}" 
+                                                        class="scheduled_date" 
+                                                        data-dose-id="{{ $dose->id }}"
+                                                        style="border: 1px solid #ffa687; border-radius: 3px;"
+                                                    >
 
-                                                @if($dose->scheduled_date && !$dose->taken_date)
                                                     <a href="#" class="cancel_appointment" data-dose-id="{{ $dose->id }}">
                                                         Cancel
                                                     </a>
+                                                @else
+                                                    {{ $dose->scheduled_date }}
                                                 @endif
 
                                             </td>

@@ -98,7 +98,7 @@ class RegistrationController extends Controller
 
         $doseType = $request->input('dose_type');
 
-        if ($registration->doses()->where('dose_type', '$dose_type')->exists()) {
+        if ($registration->doses()->where('dose_type', $doseType)->exists()) {
             return response()->json(['message' => ucfirst($doseType) . ' dose already assigned'], 500);
         }
 
@@ -120,7 +120,7 @@ class RegistrationController extends Controller
             'registration_id' => $registration->id,
             'vaccine_id' => $request->input('vaccine'),
             'dose_type' => $request->input('dose_type'),
-            'scheduled_date' => $request->input('date'),
+            'scheduled_date' => $request->input('scheduled_date'),
             'given_by' => null,
         ]);
 
@@ -144,7 +144,7 @@ class RegistrationController extends Controller
         if ($dose->taken_date)
             return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Already taken']);
 
-        if (!$dose->scheduled_at)
+        if (!$dose->scheduled_date)
             return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Not yet scheduled']);
 
         if (!$dose->taken_date) {
