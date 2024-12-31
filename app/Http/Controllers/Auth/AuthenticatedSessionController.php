@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('front.index', absolute: false));
+        return redirect()->intended(route(auth()->user()->getRedirectRouteName(), absolute: false));
     }
 
     /**
@@ -39,8 +39,10 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
+
+        // Add a success message to the session
+        $request->session()->flash('success', 'You are logged out successfully!');
 
         return redirect('/');
     }

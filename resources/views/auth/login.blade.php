@@ -1,10 +1,13 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <!-- Logo or Heading Section -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold text-orange-600">Login</h1>
+        </div>
         <!-- Logo or Header -->
         <div class="text-center mb-6">
-            <p class="text-sm text-orange-500">Fill out the form below to log in to your account.</p>
+            <p class="text-sm text-orange-600">Fill out the form below to log in to your account.</p>
         </div>
 
         <!-- Email Address -->

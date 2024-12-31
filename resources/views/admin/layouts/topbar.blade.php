@@ -8,7 +8,7 @@
       </li>
     <?php endif; ?>
       <li>
-        <a class="nav-link text-white"  href="./" role="button"> <large><b> Vaxx</b></large></a>
+        <a class="nav-link text-white"  href="./" role="button"> <large><b> Vaccine Management</b></large></a>
       </li>
     </ul>
 
@@ -31,7 +31,15 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em;">
               <a class="dropdown-item" href="javascript:void(0)" id="manage_account"><i class="fa fa-cog"></i> Manage Account</a>
-              <a class="dropdown-item" id="logout-button"><i class="fa fa-power-off"></i> Logout</a>
+              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  Logout
+              </a>
+          
+              <!-- Hidden form for the POST request -->
+              <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                  @csrf
+              </form>
+
             </div>
       </li>
     </ul>

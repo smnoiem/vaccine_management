@@ -12,7 +12,7 @@
                         <ul class="mt-4">
                             <li><a href="{{ route('front.registration.status') }}" class="btn btn-link">Vaccine Status</a></li>
                             <li><a href="" class="btn btn-link">Vaccine Card</a></li>
-                            <li><a href="" class="btn btn-link">Faq</a></li>
+                            
                         </ul>
                     </div>
                 </div>
