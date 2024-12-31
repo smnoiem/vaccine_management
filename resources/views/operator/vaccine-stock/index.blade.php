@@ -1,4 +1,4 @@
-@extends('operator.layouts.body', ['title' => 'Vaccine Stock', 'page'=> 'vaccine_stock'])
+@extends('operator.layouts.body', ['title' => 'Vaccine Stock', 'page'=> 'vaccine_stock_list'])
 @section('content')
     <div class="col-lg-12">
         <div class="card card-outline card-success">
