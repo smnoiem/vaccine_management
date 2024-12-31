@@ -61,7 +61,8 @@ class User extends Authenticatable
     public function getRedirectRouteName()
     {
         switch ($this->role):
-            // case 1: return 'admin.index';
+            case 1:
+                return 'admin.index';
             case 2:
                 return 'operator.index';
         endswitch;
