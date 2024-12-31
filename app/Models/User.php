@@ -67,6 +67,7 @@ class User extends Authenticatable
             case 2:
                 return 'operator.index';
         endswitch;
+        
         return 'front.index';
     }
 }
