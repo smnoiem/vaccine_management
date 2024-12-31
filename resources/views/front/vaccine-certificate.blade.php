@@ -47,13 +47,11 @@
 
                                     @foreach ($registration->doses as $dose)
                                         <tr>
-                                            <td>{{$dose->dose_type}}</td>
-                                            <td>
-                                                {{ $dose->scheduled_date }}
-                                            </td>
-                                            <td>{{$dose->taken_date}}</td>
-                                            <td>{{ $dose->givenBy->name ?? "" }}</td>
-                                            <td>{{$dose->vaccine->name}}</td>
+                                            <td> {{$dose->dose_type}} </td>
+                                            <td> {{ $dose->scheduled_date }} </td>
+                                            <td> {{$dose->taken_date}} </td>
+                                            <td> {{ $dose->givenBy->name ?? "" }} </td>
+                                            <td> {{$dose->vaccine->name}} </td>
                                         </tr>
                                     @endforeach
                             

@@ -120,7 +120,7 @@ class RegistrationController extends Controller
             'registration_id' => $registration->id,
             'vaccine_id' => $request->input('vaccine'),
             'dose_type' => $request->input('dose_type'),
-            'scheduled_date' => $request->input('date'),
+            'scheduled_date' => $request->input('scheduled_date'),
             'given_by' => null,
         ]);
 
