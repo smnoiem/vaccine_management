@@ -169,7 +169,7 @@
             <div class="col-md-8 text-center">
                 <div class="row">
                     <div class="col-md-6 align-self-center">
-                        <h4 class="text-bold">Download the App</h4>
+                        <h4 class="my-3"><a href="https://play.google.com/store/apps/details?id=com.codersbucket.surokkha_app&hl=bn&pli=1">Download the App</a></h4>
                     </div>
                     <div class="col-md-6">
                         <img src="{{ asset('img/playstore.png') }}" alt="">
@@ -190,15 +190,15 @@
                         <div class="row mt-5">
                             <div class="col-md-4 text-center mb-2">
                                 <img src="{{ asset('img/mujib.png') }}" alt="" class="w-100">
-                                <h4 class="my-3"><a href="">Mujib 100 Portal</a></h4>
+                                <h4 class="my-3">Mujib 100 Portal</h4>
                             </div>
                             <div class="col-md-4 text-center mb-2 align-self-center">
                                 <img src="{{ asset('img/playstore.png') }}" alt="">
-                                <h4 class="my-3"><a href="">Mujib 100 Android App</a></h4>
+                                <h4 class="my-3"><a href="https://play.google.com/store/apps/details?id=com.codersbucket.surokkha_app&hl=bn&pli=1">Android App</a></h4>
                             </div>
                             <div class="col-md-4 text-center mb-2 align-self-center">
                                 <img src="{{ asset('img/ios.png') }}" alt="">
-                                <h4 class="my-3"><a href="">Mujib 100 iOS App</a></h4>
+                                <h4 class="my-3"><a href="https://surokkha.gov.bd/">iOS App</a></h4>
                             </div>
                         </div>
                     </div>

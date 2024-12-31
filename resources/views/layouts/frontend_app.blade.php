@@ -89,6 +89,46 @@
         .nav-item.ms-5 {
         margin-left: 60px; /* Customize spacing as needed */
         }
+            /* Navbar Button Animation */
+        .navbar-nav .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: #F26D3E;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #F26D3E;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FF5733;
+        }
+
+        .navbar-nav .nav-link:hover::before {
+            left: 0;
+            width: 100%;
+        }
+
+        /* Responsive Toggler Animation */
+        .navbar-toggler-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .navbar-toggler:hover .navbar-toggler-icon {
+            transform: rotate(90deg);
+        }
+
 
     </style>
     <title>@yield('title')</title>
@@ -131,11 +171,11 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page"
-                                                href="{{ route('front.vaccine.card') }}">Download Vaccine Card</a>
+                                                href="{{ route('front.vaccine.card') }}">Card</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" aria-current="page"
-                                                href="{{ route('front.vaccine.certificate') }}">Download Certificate</a>
+                                                href="{{ route('front.vaccine.certificate') }}">Certificate</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
