@@ -32,6 +32,8 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('admin.centers.edit', $center->id) }}">Edit</a>
                                 <div class="dropdown-divider"></div>
+                                <a class="dropdown-item assign_user" href="{{route('admin.centers.send-vaccine', $center->id)}}" data-id="{{$center->id}}">Send Vaccine</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item delete_center" href="javascript:void(0)" data-id="{{$center->id}}">Delete</a>
                                 </div>
                             </td>
