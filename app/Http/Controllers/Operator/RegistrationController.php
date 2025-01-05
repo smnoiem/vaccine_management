@@ -8,7 +8,7 @@ use App\Models\Registration;
 use App\Models\Vaccine;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 class RegistrationController extends Controller
 {
     /**
@@ -59,7 +59,7 @@ class RegistrationController extends Controller
     public function update(Request $request, Registration $registration)
     {
         $user = $registration->user;
-        
+
         $user->phone = $request->input('phone', $user->phone);
         $user->dob = $request->input('dob', $user->dob);
         $user->save();
@@ -106,13 +106,11 @@ class RegistrationController extends Controller
             return response()->json(['message' => 'Assigned dose need to be taken first'], 500);
         }
 
-        if($doseType == 'second' && $registration->doses()->where('dose_type', 'first')->doesntExist())
-        {
+        if ($doseType == 'second' && $registration->doses()->where('dose_type', 'first')->doesntExist()) {
             return response()->json(['message' => 'First dose not taken yet.'], 500);
         }
 
-        if($doseType == 'booster' && $registration->doses()->where('dose_type', 'second')->doesntExist())
-        {
+        if ($doseType == 'booster' && $registration->doses()->where('dose_type', 'second')->doesntExist()) {
             return response()->json(['message' => 'Second dose not taken yet.'], 500);
         }
 
@@ -124,8 +122,7 @@ class RegistrationController extends Controller
             'given_by' => null,
         ]);
 
-        if(!$dose)
-        {
+        if (!$dose) {
             return 2;
         }
 
@@ -152,9 +149,26 @@ class RegistrationController extends Controller
             $dose->given_by = auth()->user()->id;
             $dose->update();
         }
-
+        $this->sendVaccineReadyEmail($dose, $registration);
         $vaccines = Vaccine::all();
 
         return redirect(route('operator.registrations.doses', $registration->id))->with(['success' => 'Vaccined marked taken']);
+    }
+    public function sendVaccineReadyEmail($dose, $registration)
+    {
+
+        try {
+            $userEmail = $registration->user->email;
+            $message = "Your " . ucfirst($dose->dose_type) . " Dose Is Ready!";
+
+            Mail::raw($message, function ($mail) use ($userEmail) {
+                $mail->to($userEmail)
+                    ->subject('Vaccine Dose Notification');
+            });
+
+            return redirect()->back()->with('success', 'Email sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to send email.');
+        }
     }
 }
