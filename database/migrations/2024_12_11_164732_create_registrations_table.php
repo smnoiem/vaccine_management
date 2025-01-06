@@ -15,8 +15,8 @@ class CreateRegistrationsTable extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('center_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Cascade delete
+            $table->foreignId('center_id')->constrained()->onDelete('cascade'); // Cascade delete
             $table->timestamps();
         });
     }
