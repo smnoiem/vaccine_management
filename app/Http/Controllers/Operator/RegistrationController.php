@@ -125,8 +125,25 @@ class RegistrationController extends Controller
         if (!$dose) {
             return 2;
         }
-
+        $this->sendVaccineScheduleEmail($dose, $registration);
         return 1;
+    }
+    public function sendVaccineScheduleEmail($dose, $registration)
+    {
+
+        try {
+            $userEmail = $registration->user->email;
+            $message = "Your " . ucfirst($dose->dose_type) . " Dose Is Scheduled at " . $dose->scheduled_date;
+
+            Mail::raw($message, function ($mail) use ($userEmail) {
+                $mail->to($userEmail)
+                    ->subject('Vaccine Dose Notification');
+            });
+
+            return redirect()->back()->with('success', 'Email sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to send email.');
+        }
     }
 
     public function markDoseAsTaken(Registration $registration, Dose $dose)
