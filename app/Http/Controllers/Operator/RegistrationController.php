@@ -155,8 +155,7 @@ class RegistrationController extends Controller
 
         $vaccineStock = VaccineStock::where('center_id', $registration->center->id)->where('vaccine_id', $dose->vaccine->id)->first();
 
-        if(!$vaccineStock || $vaccineStock->quantity < 1)
-        {
+        if (!$vaccineStock || $vaccineStock->quantity < 1) {
             return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'No vial available in stock for ' . $dose->vaccine->name]);
         }
 
@@ -173,7 +172,7 @@ class RegistrationController extends Controller
             $dose->taken_date = now();
             $dose->given_by = auth()->user()->id;
             $dose->update();
-            
+
             $vaccineStock->quantity -= 1;
             $vaccineStock->update();
         }
@@ -187,7 +186,7 @@ class RegistrationController extends Controller
 
         try {
             $userEmail = $registration->user->email;
-            $message = "Your " . ucfirst($dose->dose_type) . " Dose Is Ready!";
+            $message = "Your " . ucfirst($dose->dose_type) . " Dose Is Done!";
 
             Mail::raw($message, function ($mail) use ($userEmail) {
                 $mail->to($userEmail)
