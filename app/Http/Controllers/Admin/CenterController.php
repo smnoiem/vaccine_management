@@ -129,29 +129,47 @@ class CenterController extends Controller
 
     public function sendVaccineStore(Request $request, Center $center)
     {
-        $vaccineId = $request->input('vaccine_id');
+        $vaccineId = $request->input('vaccine_id', 0);
+        $quantity = $request->input('quantity', 0);
+
         $vaccine = Vaccine::findOrFail($vaccineId);
+
+        $centralVaccineStock = VaccineStock::where('vaccine_id', $vaccine->id)
+            ->whereNull('center_id')
+            ->firstOrFail();
+
+        if($centralVaccineStock->quantity < $quantity)
+        {
+            return 2;
+        }
 
         $centerVaccineStock = VaccineStock::where('vaccine_id', $vaccine->id)
             ->where('center_id', $center->id)
             ->first();
 
-        if ($centerVaccineStock) {
-
-            $centerVaccineStock->quantity += $request->input('quantity');
+        if ($centerVaccineStock)
+        {
+            $centerVaccineStock->quantity += $quantity;
             $centerVaccineStock = $centerVaccineStock->update();
 
-        } else {
+        }
+        else
+        {
             $centerVaccineStock = VaccineStock::create([
                 'vaccine_id' => $vaccine->id,
                 'center_id' => $center->id,
-                'quantity' => $request->input('quantity'),
+                'quantity' => $quantity,
             ]);
         }
 
         if (!$centerVaccineStock)
             return response('Updating Failed!', 500);
         else
+        {
+            $centralVaccineStock->quantity -= $quantity;
+            $centralVaccineStock->update();
+            
             return 1;
+        }
     }
 }
