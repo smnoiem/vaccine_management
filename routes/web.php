@@ -29,7 +29,7 @@ Route::name('front.')->group(function () {
 
     });
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'registered'])->group(function () {
 
         Route::get('/vaccine-card', [VaccineCardController::class, 'index'])->name('vaccine.card');
 

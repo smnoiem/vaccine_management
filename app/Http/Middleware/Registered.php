@@ -16,7 +16,7 @@ class Registered
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()?->user()?->registration) {
-            return redirect(route('front.registration.create'));
+            return redirect(route('front.registration.create'))->with('warning', "You must apply for vaccine first");
         }
 
         return $next($request);
