@@ -43,6 +43,7 @@ Route::name('front.')->group(function () {
 
 });
 
+
 Route::name('operator.')->prefix('center')->middleware(['auth', 'role:2'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('index');
