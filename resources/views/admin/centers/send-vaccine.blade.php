@@ -72,19 +72,31 @@
                 processData: false,
                 method: 'POST',
 				success:function(resp){
-					if(resp == 1){
+					if(resp == 1)
+                    {
 						alert_toast('Data successfully saved.',"success");
 						setTimeout(function(){
 							location.replace('{{route("admin.centers.index")}}')
 						},750)
 					}
-                    else {
+                    else if(resp == 2)
+                    {
+                        alert_toast("Insuffient stock!", "danger");
+					    end_load()
+                    }
+                    else
+                    {
 					    alert_toast("something went wrong", "danger");
 					    end_load()
                     }
 				},
                 error:function(err) {
-					alert_toast('something went wrong', "danger");
+                    
+                    if(err.status == 404)
+                        alert_toast('Insuffient stock!', "danger");
+                    else
+                        alert_toast('something went wrong', "danger");
+
 					end_load()
                 }
 			})
