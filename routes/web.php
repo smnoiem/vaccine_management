@@ -76,7 +76,7 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
     Route::get('users/{user}/assign-center', [AdminUserController::class, 'assignCenter'])->name('users.assign-center');
     Route::post('users/{user}/assign-center', [AdminUserController::class, 'assignCenterStore'])->name('users.assign-center-store');
 
-    Route::get('vaccine-stock', [CentralVaccineStockController::class, 'getVaccineStock'])->name('vaccine-stock.index');
+    Route::resource('vaccine-stock', CentralVaccineStockController::class);
 
 });
 
