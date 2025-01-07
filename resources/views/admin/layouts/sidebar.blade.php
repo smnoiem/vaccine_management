@@ -68,7 +68,7 @@
         {{-- Central Vaccine Stock --}}
         <li class="nav-item">
             <a href="#" class="nav-link nav-central_vaccine_stock">
-            <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-syringe"></i>
             <p>
                 Central Vaccine Stock
                 <i class="right fas fa-angle-left"></i>

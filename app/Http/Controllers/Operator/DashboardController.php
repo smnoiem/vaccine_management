@@ -9,6 +9,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('operator.dashboard.index');
+        $center = auth()?->user()?->center ?? [];
+
+        return view('operator.dashboard.index', ['center' => $center]);
     }
 }
