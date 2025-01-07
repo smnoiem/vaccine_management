@@ -6,6 +6,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Operator\DashboardController;
 use App\Http\Controllers\Operator\RegistrationController as OperatorRegistrationController;
 use App\Http\Controllers\Operator\VaccineStockController;
+use App\Http\Controllers\Admin\VaccineStockController as CentralVaccineStockController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\VaccineCardController;
@@ -68,17 +69,14 @@ Route::name('admin.')->prefix('admin')->middleware(['auth', 'role:1'])->group(fu
     Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
 
     Route::resource('centers', AdminCenterController::class);
-
     Route::get('centers/{center}/send-vaccine', [AdminCenterController::class, 'sendVaccine'])->name('centers.send-vaccine');
-
     Route::post('centers/{center}/send-vaccine', [AdminCenterController::class, 'sendVaccineStore'])->name('centers.send-vaccine-store');
 
-
     Route::resource('users', AdminUserController::class);
-
     Route::get('users/{user}/assign-center', [AdminUserController::class, 'assignCenter'])->name('users.assign-center');
-
     Route::post('users/{user}/assign-center', [AdminUserController::class, 'assignCenterStore'])->name('users.assign-center-store');
+
+    Route::get('vaccine-stock', [CentralVaccineStockController::class, 'getVaccineStock'])->name('vaccine-stock.index');
 
 });
 

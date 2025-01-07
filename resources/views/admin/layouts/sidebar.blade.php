@@ -64,6 +64,25 @@
             </li>
           </ul>
         </li>
+
+        {{-- Central Vaccine Stock --}}
+        <li class="nav-item">
+            <a href="#" class="nav-link nav-central_vaccine_stock">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+                Central Vaccine Stock
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('admin.vaccine-stock.index') }}" class="nav-link nav-central_vaccine_stock_list tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>List</p>
+                </a>
+            </li>
+            </ul>
+        </li>
       </ul>
     </nav>
   </div>
