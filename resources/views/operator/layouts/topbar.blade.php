@@ -30,8 +30,8 @@
                     </div>
                 </span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="account_settings" style="left: -2.5em;">
-                <a class="dropdown-item" href="javascript:void(0)" id="manage_account"><i class="fa fa-cog"></i> Manage Account</a>
+            <div class="dropdown-menu" aria-labelledby="center_info" style="left: -2.5em;">
+                <a class="dropdown-item" href="javascript:void(0)" id="center_info"><i class="fa fa-clinic-medical"></i> Center Info</a>
                 <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Logout
                 </a>
@@ -45,3 +45,7 @@
     </ul>
 </nav>
 <!-- /.navbar -->
+
+@push('scripts')
+    
+@endpush

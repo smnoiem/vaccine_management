@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dose;
 use App\Models\Registration;
 use App\Models\Vaccine;
+use App\Models\VaccineStock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -152,6 +153,13 @@ class RegistrationController extends Controller
         $validDose = $dose->registration->id == $registration->id;
         $validRequest = $validOperator && $validDose;
 
+        $vaccineStock = VaccineStock::where('center_id', $registration->center->id)->where('vaccine_id', $dose->vaccine->id)->first();
+
+        if(!$vaccineStock || $vaccineStock->quantity < 1)
+        {
+            return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'No vial available in stock for ' . $dose->vaccine->name]);
+        }
+
         if (!$validRequest)
             return redirect(route('operator.registrations.doses', $registration->id))->with(['error' => 'Unauthorized request']);
 
@@ -165,9 +173,12 @@ class RegistrationController extends Controller
             $dose->taken_date = now();
             $dose->given_by = auth()->user()->id;
             $dose->update();
+            
+            $vaccineStock->quantity -= 1;
+            $vaccineStock->update();
         }
+
         $this->sendVaccineReadyEmail($dose, $registration);
-        $vaccines = Vaccine::all();
 
         return redirect(route('operator.registrations.doses', $registration->id))->with(['success' => 'Vaccined marked taken']);
     }

@@ -1,22 +1,11 @@
-@extends('admin.layouts.body', ['title' => 'Update Vaccine', 'page'=> 'update_vaccine'])
+@extends('admin.layouts.body', ['title' => 'Enlist new Import', 'page'=> 'create_vaccine'])
 @section('content')
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form action="" id="update_vaccine">
+                <form action="" id="create_vaccine">
                     @csrf
                     @method('POST')
-                    <input type="hidden" name="center_id" value="{{ $center->id }}">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <p>Name: {{$center->name}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <p>Address: {{$center->address}}</p>
-                        </div>
-                    </div>
             
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -36,10 +25,9 @@
                         </div>
                     </div>
 
-
                     <hr>
                     <div class="col-lg-12 text-right justify-content-center d-flex">
-                        <button class="btn btn-primary mr-2">Send</button>
+                        <button class="btn btn-primary mr-2">Enlist</button>
                         <button class="btn btn-secondary" type="button" onclick="location.href = '{{route('admin.centers.index')}}'">Cancel</button>
                     </div>
                 </form>
@@ -56,14 +44,17 @@
 	</style>
 	<script>
         
-		$('#update_vaccine').submit(function(e){
+		$('#create_vaccine').submit(function(e) {
 			e.preventDefault()
+
 			$('input').removeClass("border-danger")
+
 			start_load()
+
 			$('#msg').html('')
 
-            var url = '{{route("admin.centers.send-vaccine-store", ":id")}}';
-            url = url.replace(':id', '{{$center->id}}');
+            var url = '{{ route("admin.vaccine-stock.store") }}';
+
 			$.ajax({
 				url:url,
 				data: new FormData($(this)[0]),
@@ -71,19 +62,14 @@
                 contentType: false,
                 processData: false,
                 method: 'POST',
-				success:function(resp){
+				success:function(resp) {
 					if(resp == 1)
                     {
-						alert_toast('Data successfully saved.',"success");
-						setTimeout(function(){
-							location.replace('{{route("admin.centers.index")}}')
+						alert_toast('Vaccine import enlisted successfully!',"success");
+						setTimeout(function() {
+							location.replace('{{ route("admin.vaccine-stock.index") }}')
 						},750)
 					}
-                    else if(resp == 2)
-                    {
-                        alert_toast("Insuffient stock!", "danger");
-					    end_load()
-                    }
                     else
                     {
 					    alert_toast("something went wrong", "danger");
@@ -91,12 +77,7 @@
                     }
 				},
                 error:function(err) {
-                    
-                    if(err.status == 404)
-                        alert_toast('Insuffient stock!', "danger");
-                    else
-                        alert_toast('something went wrong', "danger");
-
+					alert_toast('something went wrong', "danger");
 					end_load()
                 }
 			})
