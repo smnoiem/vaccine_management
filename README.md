@@ -19,8 +19,18 @@ This web application is intended to make the national vaccination operations smo
 -   `composer install`
 -   `php artisan migrate`
 -   `php artisan db:seed`
+-   `php artisan key:generate`
 -   `npm install`
 -   `npm run dev` or `npm run build` for production
+
+### Testing accounts credentials
+-   Test Admin
+    -   Email:  ``admin@test.com``
+    -   Password:   ``password``
+-   Test Operator
+    -   Email: ``operator@test.com``
+    -   Password:   ``password``
+-   Applicant accounts can be registered right away and no verification needed for services
 
 ### Features
 -   Admin panel for the higher authority

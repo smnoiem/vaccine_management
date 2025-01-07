@@ -14,8 +14,8 @@ class VaccineSeeder extends Seeder
     public function run(): void
     {
         Vaccine::create([
-            'name' => 'Vercell',
-            'vendor' => 'vercell',
+            'name' => 'Verocell',
+            'vendor' => 'verocell',
         ]);
 
         Vaccine::create([
