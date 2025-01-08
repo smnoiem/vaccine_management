@@ -60,17 +60,23 @@
             var url = '{{route("admin.users.destroy", ":id")}}'
             url = url.replace(':id', $id);
             start_load()
+            _conf_close();
             $.ajax({
                 url:url,
                 type:'DELETE',
                 data:{_token: '{{csrf_token()}}', id:$id},
                 success:function(resp){
-                    if(resp==1){
-                        alert_toast("Data successfully deleted",'success')
+
+                    console.log(resp);
+                    console.log(resp.message);
+
+                    if(resp.message){
+                        
+                        alert_toast(resp.message,'success')
+
                         setTimeout(function(){
                             location.reload()
                         },1500)
-
                     }
                     else {
 					    alert_toast("something went wrong", "danger");
@@ -78,8 +84,9 @@
                     }
                 },
                 error:function(err) {
-                    console.log(err.responseJSON.message);
-					alert_toast(err.responseJSON.message, "danger");
+                    data = JSON.parse(err.responseText);
+                    console.log(data.message);
+					alert_toast(data.message, "danger");
 					end_load()
                 }
             })
