@@ -92,7 +92,7 @@ class UserController extends Controller
    */
   public function update(StoreUserRequest $request, User $user)
   {
-    
+
     $oldPassword = $user->password;
 
     $validated = $request->validated();
@@ -126,9 +126,28 @@ class UserController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(User $user)
   {
-    //
+
+    if(auth()->user()->id == $user->id)
+    {
+        return response()->json(['message' => 'You cannot delete your own account'], 401);
+    }
+
+    if($user->registration()->exists())
+    {
+        return response()->json(['message' => 'Cannot delete. User has vaccine registration.'], 500);
+    }
+
+    if($user->delete())
+    {
+        return response()->json(['message' => 'Account delete successfully.']);
+    }
+    else
+    {
+        return response()->json(['message' => 'Something went wrong.'], 500);
+    }
+
   }
 
   public function assignCenter(User $user)
@@ -145,7 +164,7 @@ class UserController extends Controller
       abort(401);
 
     $user->center_id = $validated['center_id'];
-    
+
     $isAssigned = $user->update();
 
     if ($isAssigned)
