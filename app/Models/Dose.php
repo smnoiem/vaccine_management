@@ -12,8 +12,10 @@ class Dose extends Model
     protected $fillable = [
         'registration_id',
         'vaccine_id',
+        'given_by',
         'dose_type',
         'scheduled_date',
+        'taken_date',
     ];
 
     public function registration()

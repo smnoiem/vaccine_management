@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Registration extends Model
 {
+    protected $fillable = ['user_id', 'center_id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
